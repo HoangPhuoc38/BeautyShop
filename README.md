@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BeautyShop - Nail & Spa Management System
 
 BeautyShop là ứng dụng web hỗ trợ quản lý hoạt động của cửa hàng Nail & Spa. Dự án tách Frontend và Backend, sử dụng CouchDB làm cơ sở dữ liệu NoSQL dạng document.
@@ -118,3 +119,7 @@ cd backend\beautyshop-backend
 ```
 
 GitHub Actions cũng chạy `clean verify` khi push hoặc mở Pull Request vào các nhánh `main` và `develop`.
+=======
+# BeautyShop
+Dự án BeautyShop là hệ thống quản lý bán hàng, đặt lịch và tính tiền chuyên biệt cho các cơ sở làm đẹp (Nail &amp; Spa). Hệ thống lấy trọng tâm là thiết kế Cơ sở dữ liệu NoSQL dạng Tài liệu (Document Database) sử dụng CouchDB và PouchDB, tập trung giải quyết bài toán vận hành liên tục tại cửa hàng thông qua kiến trúc Offline-First.
+>>>>>>> 5e19fc541b51c71c97e7b3f49dec0ab3dc60f588
