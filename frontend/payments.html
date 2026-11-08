@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BeautyShop - Quản lý giao dịch thanh toán">
+    <title>BeautyShop | Thanh toán</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/payments.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span>
+                <span>Khách hàng</span>
+            </a>
+
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span>
+                <span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span>
+                <span>Dịch vụ làm đẹp</span>
+            </a>
+
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Lịch hẹn</span>
+            </a>
+
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="payments.html" class="nav-item active">
+                <span class="nav-icon">₫</span>
+                <span>Thanh toán</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                ↪ Đăng xuất
+            </button>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle" type="button"
+                        aria-label="Mở menu">☰</button>
+
+                <div>
+                    <h1 class="topbar-title">Thanh toán</h1>
+                    <p class="topbar-subtitle">
+                        Theo dõi và quản lý các giao dịch thanh toán
+                    </p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="profile-container">
+                    <button type="button" class="profile-trigger"
+                            id="profileTrigger"
+                            aria-expanded="false"
+                            aria-controls="profileDropdown">
+                        <div class="profile-avatar" id="profileAvatar">BS</div>
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+                        <span class="profile-chevron">⌄</span>
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" hidden>
+                        <div class="profile-dropdown-heading">
+                            <div class="profile-avatar" id="dropdownAvatar">BS</div>
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button type="button" class="profile-menu-item"
+                                id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+
+                        <button type="button" class="profile-menu-item"
+                                id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button type="button"
+                                class="profile-menu-item danger"
+                                id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+                    </div>
+                </div>
+
+                <input type="file" id="profileAvatarInput"
+                       accept="image/png,image/jpeg,image/webp" hidden>
+            </div>
+        </header>
+
+        <!-- PAGE -->
+        <section class="payments-page">
+
+            <div class="payment-page-heading">
+                <div>
+                    <span class="page-eyebrow">QUẢN LÝ TÀI CHÍNH</span>
+                    <h2>Giao dịch thanh toán</h2>
+                    <p>Kiểm tra trạng thái, phương thức và doanh thu thanh toán.</p>
+                </div>
+
+                <button class="payment-refresh-button" id="refreshPayments"
+                        type="button">
+                    <span>↻</span> Làm mới dữ liệu
+                </button>
+            </div>
+
+            <div class="payment-notice" id="paymentNotice" hidden>
+                <span class="notice-icon">ⓘ</span>
+                <span id="paymentNoticeText"></span>
+                <button type="button" id="closePaymentNotice"
+                        aria-label="Đóng thông báo">×</button>
+            </div>
+
+            <!-- STATISTICS -->
+            <div class="payment-stats-grid" hidden>
+                <article class="payment-stat-card">
+                    <div class="payment-stat-top">
+                        <span class="payment-stat-icon purple">▤</span>
+                        <span class="payment-stat-label">Tổng giao dịch</span>
+                    </div>
+                    <strong id="totalTransactions">0</strong>
+                    <span class="payment-stat-description">Tất cả giao dịch</span>
+                </article>
+
+                <article class="payment-stat-card">
+                    <div class="payment-stat-top">
+                        <span class="payment-stat-icon green">✓</span>
+                        <span class="payment-stat-label">Đã thanh toán</span>
+                    </div>
+                    <strong id="paidTransactions">0</strong>
+                    <span class="payment-stat-description">Giao dịch thành công</span>
+                </article>
+
+                <article class="payment-stat-card warning-stat">
+                    <div class="payment-stat-top">
+                        <span class="payment-stat-icon orange">◷</span>
+                        <span class="payment-stat-label">Chờ thanh toán</span>
+                    </div>
+                    <strong id="pendingTransactions">0</strong>
+                    <span class="payment-stat-description">Đang chờ xác nhận</span>
+                </article>
+
+                <article class="payment-stat-card warning-stat">
+                    <div class="payment-stat-top">
+                        <span class="payment-stat-icon pink">⇄</span>
+                        <span class="payment-stat-label">Chuyển khoản chờ xác nhận</span>
+                    </div>
+                    <strong id="pendingBankTransfers">0</strong>
+                    <span class="payment-stat-description">Cần kiểm tra giao dịch</span>
+                </article>
+            </div>
+
+            <!-- REVENUE -->
+            <div class="payment-revenue-grid" hidden>
+                <article class="payment-revenue-card main-revenue">
+                    <div>
+                        <span class="revenue-label">Doanh thu hôm nay</span>
+                        <strong id="todayRevenue">0 ₫</strong>
+                        <span class="revenue-date" id="statisticDate">Hôm nay</span>
+                    </div>
+                    <div class="revenue-icon">₫</div>
+                </article>
+
+                <article class="payment-revenue-card">
+                    <div>
+                        <span class="revenue-label">Doanh thu tiền mặt</span>
+                        <strong id="cashRevenue">0 ₫</strong>
+                        <span class="revenue-date">Các giao dịch đã thanh toán</span>
+                    </div>
+                    <div class="revenue-icon cash-icon">▣</div>
+                </article>
+
+                <article class="payment-revenue-card">
+                    <div>
+                        <span class="revenue-label">Doanh thu chuyển khoản</span>
+                        <strong id="bankTransferRevenue">0 ₫</strong>
+                        <span class="revenue-date">Các giao dịch đã thanh toán</span>
+                    </div>
+                    <div class="revenue-icon bank-icon">⇄</div>
+                </article>
+            </div>
+
+            <!-- PAYMENT TABLE -->
+            <section class="payment-panel">
+                <div class="payment-panel-heading">
+                    <div>
+                        <h3>Danh sách giao dịch</h3>
+                        <p>Tra cứu và quản lý trạng thái thanh toán</p>
+                    </div>
+
+                    <span class="payment-result-count" id="paymentResultCount">
+                        0 giao dịch
+                    </span>
+                </div>
+
+                <!-- FILTERS -->
+                <form class="payment-filters" id="paymentFilterForm">
+                    <div class="payment-filter-field keyword-field">
+                        <label for="paymentKeyword">Tìm kiếm</label>
+                        <input type="search" id="paymentKeyword"
+                               placeholder="Mã hóa đơn, khách hàng...">
+                    </div>
+
+                    <div class="payment-filter-field">
+                        <label for="paymentStatusFilter">Trạng thái</label>
+                        <select id="paymentStatusFilter">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="paid">Đã thanh toán</option>
+                            <option value="pending">Chờ thanh toán</option>
+                            <option value="cancelled">Đã hủy</option>
+                        </select>
+                    </div>
+
+                    <div class="payment-filter-field">
+                        <label for="paymentMethodFilter">Phương thức</label>
+                        <select id="paymentMethodFilter">
+                            <option value="">Tất cả phương thức</option>
+                            <option value="cash">Tiền mặt</option>
+                            <option value="bank_transfer">Chuyển khoản</option>
+                        </select>
+                    </div>
+
+                    <div class="payment-filter-field">
+                        <label for="paymentFromDate">Từ ngày</label>
+                        <input type="date" id="paymentFromDate">
+                    </div>
+
+                    <div class="payment-filter-field">
+                        <label for="paymentToDate">Đến ngày</label>
+                        <input type="date" id="paymentToDate">
+                    </div>
+
+                    <div class="payment-filter-actions">
+                        <button type="submit" class="payment-search-button">
+                            Tìm kiếm
+                        </button>
+                        <button type="button" class="payment-clear-button"
+                                id="clearPaymentFilters">
+                            Xóa lọc
+                        </button>
+                    </div>
+                </form>
+
+                <!-- TABLE -->
+                <div class="payment-table-wrapper">
+                    <table class="payment-table">
+                        <thead>
+                        <tr>
+                            <th>MÃ GIAO DỊCH</th>
+                            <th>MÃ HÓA ĐƠN</th>
+                            <th>KHÁCH HÀNG</th>
+                            <th>PHƯƠNG THỨC</th>
+                            <th>SỐ TIỀN</th>
+                            <th>TRẠNG THÁI</th>
+                            <th>THỜI GIAN</th>
+                            <th>THAO TÁC</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="paymentTableBody">
+                        <tr>
+                            <td colspan="8" class="payment-empty-cell">
+                                Đang tải dữ liệu...
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="payment-pagination">
+                    <span id="paymentPageInfo">Trang 1 / 1</span>
+
+                    <div class="payment-pagination-actions">
+                        <button type="button" id="paymentPrevPage"
+                                disabled>← Trước</button>
+                        <button type="button" id="paymentNextPage"
+                                disabled>Tiếp →</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <footer class="dashboard-footer">
+            <span>© <span id="paymentCurrentYear"></span> BeautyShop.</span>
+            <span>Beauty Management System</span>
+        </footer>
+    </main>
+</div>
+
+<!-- PROFILE DIALOG -->
+<div class="profile-dialog" id="profileDialog" hidden>
+    <div class="profile-dialog-backdrop" id="closeProfileDialog"></div>
+    <div class="profile-dialog-content">
+        <button type="button" class="profile-dialog-close"
+                id="profileDialogClose" aria-label="Đóng">×</button>
+
+        <div class="profile-dialog-heading">
+            <div class="profile-avatar large" id="dialogAvatar">BS</div>
+            <div>
+                <h3 id="dialogUserName">Tài khoản</h3>
+                <p id="dialogUserRole">...</p>
+            </div>
+        </div>
+
+        <div class="profile-dialog-info">
+            <div><span>Tên đăng nhập</span><strong id="dialogUsername">-</strong></div>
+            <div><span>Mã nhân viên</span><strong id="dialogEmployeeId">-</strong></div>
+            <div><span>Mã chi nhánh</span><strong id="dialogBranchId">-</strong></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAYMENT DETAIL DIALOG -->
+<div class="payment-detail-dialog" id="paymentDetailDialog" hidden>
+    <div class="payment-detail-backdrop" id="closePaymentDetail"></div>
+
+    <section class="payment-detail-modal" role="dialog"
+             aria-modal="true" aria-labelledby="paymentDetailTitle">
+        <div class="payment-detail-heading">
+            <div>
+                <span class="page-eyebrow">CHI TIẾT GIAO DỊCH</span>
+                <h2 id="paymentDetailTitle">Thông tin thanh toán</h2>
+                <p id="paymentDetailInvoiceId">Hóa đơn: -</p>
+            </div>
+            <button type="button" class="payment-detail-close"
+                    id="paymentDetailCloseButton" aria-label="Đóng">×</button>
+        </div>
+
+        <div id="paymentDetailContent">
+            <div class="payment-detail-loading">Đang tải thông tin...</div>
+        </div>
+    </section>
+</div>
+
+<script src="js/app.js" defer></script>
+<script src="js/profile.js" defer></script>
+<script src="js/payments.js" defer></script>
+</body>
+</html>

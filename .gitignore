@@ -1,0 +1,41 @@
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local bank QR: each deployment owner supplies their own image
+/frontend/assets/bank-qr.jpg
+
+# Java / Maven / Spring Boot
+**/target/
+**/build/
+.mvn/wrapper/maven-wrapper.jar
+*.log
+
+# IDE / editor
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.sts4-cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local exports and backups (never commit real customer data)
+/database/backups/**
+!/database/backups/README.md
+*.dump
+*.backup
+*.bak
+*.zip
+*.rar
+
+# Node (reserved for future frontend tooling)
+node_modules/

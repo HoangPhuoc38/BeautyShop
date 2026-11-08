@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý khách hàng | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/customers.css">
+</head>
+
+<body>
+<div class="app-container">
+
+    <!-- SIDEBAR: ĐỒNG BỘ PRODUCTS -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="customers.html" class="nav-item active">
+                <span class="nav-icon">♙</span>
+                <span>Khách hàng</span>
+            </a>
+
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span>
+                <span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span>
+                <span>Dịch vụ làm đẹp</span>
+            </a>
+
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Lịch hẹn</span>
+            </a>
+
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span>
+                <span>Thanh toán</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                ↪ Đăng xuất
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle"
+                        id="menuToggle"
+                        type="button"
+                        aria-label="Mở menu">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Quản lý khách hàng</h1>
+                    <p>Quản lý thông tin và hạng thành viên khách hàng.</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                        id="globalSearch"
+                        type="search"
+                        placeholder="Tìm kiếm khách hàng..."
+                        autocomplete="off">
+                </label>
+
+                <!-- USER PROFILE: GIỐNG PRODUCTS -->
+                <div class="profile-container">
+
+                    <button
+                        type="button"
+                        class="profile-trigger"
+                        id="profileTrigger"
+                        aria-expanded="false"
+                        aria-controls="profileDropdown">
+
+                        <div class="profile-avatar" id="profileAvatar">
+                            BS
+                        </div>
+
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+
+                        <span class="profile-chevron">⌄</span>
+
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" hidden>
+
+                        <div class="profile-dropdown-heading">
+
+                            <div class="profile-avatar" id="dropdownAvatar">
+                                BS
+                            </div>
+
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item danger"
+                            id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <!-- INTRO -->
+            <section class="section-block">
+
+                <div class="customer-page-intro">
+
+                    <div>
+                        <h2>Danh sách khách hàng</h2>
+                        <p>Theo dõi thông tin, điểm tích lũy và hạng thành viên.</p>
+                    </div>
+
+                    <div class="intro-actions">
+
+                        <button
+                            type="button"
+                            id="backupCustomersButton"
+                            class="btn btn-backup"
+                            hidden>
+                            <span>⇩</span>
+                            Sao lưu dữ liệu
+                        </button>
+
+                        <button
+                            type="button"
+                            id="newCustomerButton"
+                            class="btn btn-primary">
+                            <span>＋</span>
+                            Thêm khách hàng
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- STATISTICS -->
+                <div class="customer-statistics">
+
+                    <div class="customer-stat-card">
+                        <div class="stat-icon stat-icon-purple">♙</div>
+                        <div class="stat-content">
+                            <span>Tổng khách hàng</span>
+                            <strong id="customerCount">0</strong>
+                            <small>Khách hàng trong hệ thống</small>
+                        </div>
+                    </div>
+
+                    <div class="customer-stat-card">
+                        <div class="stat-icon stat-icon-orange">✧</div>
+                        <div class="stat-content">
+                            <span>Tổng điểm tích lũy</span>
+                            <strong id="totalPoints">0</strong>
+                            <small>Điểm của tất cả khách hàng</small>
+                        </div>
+                    </div>
+
+                    <div class="customer-stat-card">
+                        <div class="stat-icon stat-icon-gold">♛</div>
+                        <div class="stat-content">
+                            <span>Khách hàng Gold</span>
+                            <strong id="goldCount">0</strong>
+                            <small>Thành viên hạng Gold</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CUSTOMER FORM -->
+                <section class="customer-form-card"
+                         id="customerFormCard"
+                         hidden>
+
+                    <div class="customer-form-heading">
+
+                        <div>
+                            <h3 id="formTitle">Thêm khách hàng mới</h3>
+                            <p>Nhập thông tin khách hàng bên dưới.</p>
+                        </div>
+
+                        <button
+                            class="form-close-button"
+                            id="cancelCustomerButton"
+                            type="button"
+                            aria-label="Đóng biểu mẫu">
+                            &times;
+                        </button>
+
+                    </div>
+
+                    <form id="customerForm">
+
+                        <input type="hidden" id="customerDocId">
+                        <input type="hidden" id="customerRevision">
+
+                        <div class="customer-form-grid">
+
+                            <div class="form-group">
+                                <label for="customerName">
+                                    Họ và tên <span>*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="customerName"
+                                    placeholder="Nhập họ và tên"
+                                    maxlength="100"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerPhone">
+                                    Số điện thoại <span>*</span>
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="customerPhone"
+                                    placeholder="0912345678 hoặc +84912345678"
+                                    autocomplete="tel"
+                                    maxlength="20"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerEmail">Email</label>
+                                <input
+                                    type="email"
+                                    id="customerEmail"
+                                    placeholder="example@gmail.com"
+                                    autocomplete="email"
+                                    maxlength="254">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerMembership">
+                                    Hạng thành viên <span>*</span>
+                                </label>
+
+                                <select id="customerMembership" required>
+                                    <option value="standard" selected>Standard</option>
+                                    <option value="silver">Silver</option>
+                                    <option value="gold">Gold</option>
+                                    <option value="platinum">Platinum</option>
+                                </select>
+                                <small class="customer-membership-hint">
+                                    Standard 0-499 · Silver 500-999 · Gold 1.000-1.999 · Platinum từ 2.000 điểm
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="customer-form-actions">
+
+                            <button
+                                type="button"
+                                class="btn btn-cancel"
+                                id="cancelCustomerFormButton">
+                                Hủy
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="saveCustomerButton">
+                                Lưu khách hàng
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <!-- CUSTOMER LIST -->
+                <section class="customer-list-card">
+
+                    <div class="customer-list-heading">
+
+                        <div>
+                            <h3>Danh sách khách hàng</h3>
+                            <p>Thông tin khách hàng được lưu trong CouchDB.</p>
+                        </div>
+
+                        <button
+                            class="btn btn-refresh"
+                            id="refreshCustomersButton"
+                            type="button">
+                            ↻ Làm mới
+                        </button>
+
+                    </div>
+
+                    <!-- FILTER -->
+                    <div class="customer-filter-bar">
+
+                        <div class="filter-search">
+                            <span>⌕</span>
+                            <input
+                                type="search"
+                                id="customerSearch"
+                                placeholder="Tìm theo mã, tên, số điện thoại...">
+                        </div>
+
+                        <select id="membershipFilter">
+                            <option value="">Tất cả hạng thành viên</option>
+                            <option value="standard">Standard</option>
+                            <option value="silver">Silver</option>
+                            <option value="gold">Gold</option>
+                            <option value="platinum">Platinum</option>
+                        </select>
+
+                    </div>
+
+                    <div
+                        class="customer-message"
+                        id="customerMessage"
+                        role="status"
+                        aria-live="polite"
+                        hidden>
+                    </div>
+
+                    <!-- TABLE -->
+                    <div class="customer-table-wrapper">
+
+                        <table class="customer-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Mã khách hàng</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Hạng thành viên</th>
+                                    <th>Điểm</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="customersTableBody">
+                                <tr>
+                                    <td colspan="7" class="table-loading">
+                                        Đang tải dữ liệu khách hàng...
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <div class="customer-pagination">
+
+                        <div class="pagination-info">
+                            Hiển thị
+                            <strong id="paginationStart">0</strong> -
+                            <strong id="paginationEnd">0</strong>
+                            trong tổng số
+                            <strong id="paginationTotal">0</strong>
+                            khách hàng
+                        </div>
+
+                        <div class="pagination-controls">
+
+                            <select id="pageSize"
+                                    aria-label="Số dòng mỗi trang">
+                                <option value="5">5 / trang</option>
+                                <option value="10" selected>10 / trang</option>
+                                <option value="20">20 / trang</option>
+                                <option value="50">50 / trang</option>
+                            </select>
+
+                            <button
+                                type="button"
+                                id="prevPageButton"
+                                class="pagination-button"
+                                aria-label="Trang trước">
+                                ‹
+                            </button>
+
+                            <div
+                                id="paginationNumbers"
+                                class="pagination-numbers">
+                            </div>
+
+                            <button
+                                type="button"
+                                id="nextPageButton"
+                                class="pagination-button"
+                                aria-label="Trang sau">
+                                ›
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <footer class="footer">
+                <p>© <span id="currentYear"></span> BeautyShop.</p>
+                <p>Chăm sóc sắc đẹp, nâng tầm trải nghiệm.</p>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- PROFILE AVATAR INPUT -->
+<input
+    type="file"
+    id="profileAvatarInput"
+    accept="image/png,image/jpeg,image/webp"
+    hidden>
+
+<!-- PROFILE DIALOG: ĐỒNG BỘ PRODUCTS -->
+<dialog id="profileDialog" class="profile-dialog">
+
+    <div class="profile-dialog-content">
+
+        <div class="profile-dialog-header">
+
+            <h2>Thông tin tài khoản</h2>
+
+            <button
+                type="button"
+                class="profile-dialog-close"
+                id="closeProfileDialog">
+                ×
+            </button>
+
+        </div>
+
+        <div class="profile-dialog-user">
+
+            <div class="profile-avatar" id="dialogAvatar">
+                BS
+            </div>
+
+            <strong id="dialogUserName">Đang tải...</strong>
+            <span id="dialogUserRole">...</span>
+
+        </div>
+
+        <div class="profile-detail">
+            <span>Tên đăng nhập</span>
+            <strong id="dialogUsername">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Mã nhân viên</span>
+            <strong id="dialogEmployeeId">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Chi nhánh</span>
+            <strong id="dialogBranchId">...</strong>
+        </div>
+
+    </div>
+
+</dialog>
+
+<!-- JAVASCRIPT -->
+<script src="js/app.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/customers.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "docs": [
+    {
+      "_id": "sample_prd001",
+      "type": "product",
+      "product_id": "SAMPLE-PRD-001",
+      "name": "Sơn gel màu hồng pastel (mẫu)",
+      "category": "nail_polish",
+      "price": 120000,
+      "stock": 25,
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "_id": "sample_prd002",
+      "type": "product",
+      "product_id": "SAMPLE-PRD-002",
+      "name": "Dầu dưỡng móng (mẫu)",
+      "category": "nail_care",
+      "price": 85000,
+      "stock": 18,
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ]
+}

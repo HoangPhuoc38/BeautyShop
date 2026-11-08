@@ -1,0 +1,19 @@
+{
+  "docs": [
+    {
+      "_id": "sample_cus001",
+      "type": "customer",
+      "customer_id": "SAMPLE-CUS-001",
+      "full_name": "Khách hàng mẫu A",
+      "phone": "0000000000",
+      "email": "customer-a@example.com",
+      "membership": "standard",
+      "points": 0,
+      "rank": "Đồng",
+      "loyalty_paid_amount": 0,
+      "loyalty_processed_invoices": [],
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BeautyShop - Hệ thống quản lý cửa hàng làm đẹp">
+
+    <title>BeautyShop | Dashboard</title>
+
+    <!-- CSS CHÍNH -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- CSS KHU VỰC THANH TOÁN -->
+    <link rel="stylesheet" href="css/dashboard-payment.css">
+
+    <!-- CSS TÌM KIẾM, HỖ TRỢ, THÔNG BÁO -->
+    <link rel="stylesheet" href="css/dashboard-interactions.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- BRAND -->
+        <div class="brand">
+
+            <div class="brand-icon">✿</div>
+
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+
+        </div>
+
+
+        <!-- MENU TỔNG QUAN -->
+        <div class="sidebar-label">
+            TỔNG QUAN
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item active">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span>
+                <span>Khách hàng</span>
+            </a>
+
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span>
+                <span>Nhân viên</span>
+            </a>
+
+
+            <!-- MENU VẬN HÀNH -->
+            <div class="sidebar-label">
+                VẬN HÀNH
+            </div>
+
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span>
+                <span>Dịch vụ làm đẹp</span>
+            </a>
+
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Lịch hẹn</span>
+            </a>
+
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span>
+                <span>Thanh toán</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
+
+            <!-- SUPPORT -->
+            <div class="help-card">
+
+                <div class="help-icon">✿</div>
+
+                <h4>BeautyShop Support</h4>
+
+                <p>
+                    Quản lý cửa hàng dễ dàng hơn mỗi ngày.
+                </p>
+
+                <button
+                    type="button"
+                    id="supportButton">
+
+                    Hỗ trợ
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+            <button
+                class="logout-button"
+                id="logoutButton"
+                type="button">
+
+                <span>↪</span>
+
+                Đăng xuất
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <!-- TOPBAR LEFT -->
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Mở menu"
+                    aria-expanded="false">
+
+                    ☰
+
+                </button>
+
+                <div>
+                    <h1>Tổng quan</h1>
+                    <p>Chào mừng bạn đến với BeautyShop!</p>
+                </div>
+
+            </div>
+
+
+            <!-- TOPBAR RIGHT -->
+            <div class="topbar-right">
+
+
+                <!-- SEARCH -->
+                <div class="dashboard-search-container">
+
+                    <label class="search-box">
+
+                        <span>⌕</span>
+
+                        <input
+                            type="search"
+                            id="globalSearch"
+                            placeholder="Tìm tên khách hàng, dịch vụ..."
+                            aria-label="Tìm kiếm lịch hẹn"
+                            autocomplete="off">
+
+                    </label>
+
+                    <!-- SEARCH RESULTS -->
+                    <div
+                        class="dashboard-search-results"
+                        id="dashboardSearchResults"
+                        hidden>
+                    </div>
+
+                </div>
+
+
+                <!-- NOTIFICATION -->
+                <div class="dashboard-notification-container">
+
+                    <button
+                        class="notification-button"
+                        id="notificationButton"
+                        type="button"
+                        aria-label="Thông báo"
+                        aria-expanded="false"
+                        aria-controls="notificationPanel">
+
+                        ♧
+
+                        <span
+                            class="notification-dot"
+                            id="notificationDot">
+                        </span>
+
+                        <span
+                            class="notification-count"
+                            id="notificationCount"
+                            hidden>
+
+                            0
+
+                        </span>
+
+                    </button>
+
+
+                    <!-- NOTIFICATION PANEL -->
+                    <section
+                        class="notification-panel"
+                        id="notificationPanel"
+                        hidden>
+
+                        <div class="notification-panel-heading">
+
+                            <div>
+                                <h3>Thông báo</h3>
+                                <p>Các công việc cần xử lý</p>
+                            </div>
+
+                            <button
+                                type="button"
+                                id="closeNotification"
+                                aria-label="Đóng thông báo">
+
+                                ×
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- NOTIFICATION LIST -->
+                        <div
+                            id="notificationList"
+                            class="notification-list">
+
+                            <p>Đang tải thông báo...</p>
+
+                        </div>
+
+
+                        <!-- LINK -->
+                        <a
+                            href="payments.html"
+                            class="notification-footer-link">
+
+                            Xem quản lý thanh toán →
+
+                        </a>
+
+                    </section>
+
+                </div>
+
+
+                
+<!-- USER PROFILE -->
+<div class="profile-container">
+
+    <button
+        type="button"
+        class="profile-trigger"
+        id="profileTrigger"
+        aria-expanded="false"
+        aria-controls="profileDropdown">
+
+        <div class="profile-avatar" id="profileAvatar">
+            BS
+        </div>
+
+        <div class="profile-info">
+            <strong id="currentUserName">Đang tải...</strong>
+            <span id="currentUserRole">...</span>
+        </div>
+
+        <span class="profile-chevron">⌄</span>
+
+    </button>
+
+    <!-- PROFILE DROPDOWN -->
+    <div class="profile-dropdown" id="profileDropdown" hidden>
+
+        <div class="profile-dropdown-heading">
+
+            <div class="profile-avatar" id="dropdownAvatar">
+                BS
+            </div>
+
+            <div>
+                <strong id="dropdownUserName">Đang tải...</strong>
+                <span id="dropdownUserRole">...</span>
+            </div>
+
+        </div>
+
+        <div class="profile-dropdown-divider"></div>
+
+        <button
+            type="button"
+            class="profile-menu-item"
+            id="viewProfileButton">
+
+            <span class="profile-menu-icon">♙</span>
+            Thông tin tài khoản
+
+        </button>
+
+        <button
+            type="button"
+            class="profile-menu-item"
+            id="changeAvatarButton">
+
+            <span class="profile-menu-icon">📷</span>
+            Thay đổi ảnh đại diện
+
+        </button>
+
+        <div class="profile-dropdown-divider"></div>
+
+        <button
+            type="button"
+            class="profile-menu-item danger"
+            id="profileLogoutButton">
+
+            <span class="profile-menu-icon">↪</span>
+            Đăng xuất
+
+        </button>
+
+    </div>
+
+</div>
+
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             PAGE CONTENT
+        ====================================================== -->
+
+        <section class="page-content">
+
+
+            <!-- =================================================
+                 WELCOME BANNER
+            ================================================== -->
+
+            <section class="welcome-banner">
+
+                <div class="welcome-text">
+
+                    <span class="welcome-tag">
+                        BEAUTY MANAGEMENT SYSTEM
+                    </span>
+
+                    <h2>
+                        Chăm sóc sắc đẹp,<br>
+                        quản lý thật dễ dàng!
+                    </h2>
+
+                    <p>
+                        Theo dõi hoạt động kinh doanh và quản lý cửa hàng
+                        của bạn trên cùng một hệ thống.
+                    </p>
+
+                    <a
+                        href="appointments.html"
+                        class="primary-button">
+
+                        Xem lịch hẹn
+
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- DECORATION -->
+                <div
+                    class="welcome-decoration"
+                    aria-hidden="true">
+
+                    <div class="decoration-circle">
+                        <span>✿</span>
+                    </div>
+
+                    <span class="decoration-star star-one">✦</span>
+                    <span class="decoration-star star-two">✧</span>
+                    <span class="decoration-star star-three">♡</span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 BUSINESS STATISTICS
+            ================================================== -->
+
+            <section class="section-block">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Tình hình kinh doanh</h2>
+
+                        <p>
+                            Các chỉ số được tải từ hệ thống BeautyShop
+                        </p>
+                    </div>
+
+
+                    <!-- DATE AND REFRESH -->
+                    <div class="dashboard-date">
+
+                        <span
+                            class="date-label"
+                            id="currentDate">
+                        </span>
+
+                        <button
+                            type="button"
+                            id="refreshDashboard"
+                            class="refresh-button">
+
+                            ↻ Làm mới
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATISTICS GRID -->
+                <div class="stats-grid">
+
+
+                    <!-- CUSTOMERS -->
+                    <article class="stat-card" id="dashboardRevenueCard" hidden>
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon pink">
+                                ♙
+                            </div>
+
+                            <span class="stat-status">
+                                Khách hàng
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Tổng khách hàng
+                        </p>
+
+                        <h3 id="totalCustomers">
+                            Đang tải...
+                        </h3>
+
+                        <p class="stat-description">
+                            Tổng số khách hàng từ API
+                        </p>
+
+                    </article>
+
+
+                    <!-- PRODUCTS -->
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon purple">
+                                ♡
+                            </div>
+
+                            <span class="stat-status">
+                                Sản phẩm
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Tổng sản phẩm
+                        </p>
+
+                        <h3 id="totalProducts">
+                            Đang tải...
+                        </h3>
+
+                        <p class="stat-description">
+                            Tổng số sản phẩm từ API
+                        </p>
+
+                    </article>
+
+
+                    <!-- APPOINTMENTS -->
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon orange">
+                                ▣
+                            </div>
+
+                            <span class="stat-status">
+                                Lịch hẹn
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Lịch hẹn hôm nay
+                        </p>
+
+                        <h3 id="totalAppointments">
+                            Đang tải...
+                        </h3>
+
+                        <p class="stat-description">
+                            Số lịch hẹn trong ngày hiện tại
+                        </p>
+
+                    </article>
+
+
+                    <!-- REVENUE -->
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon green">
+                                ₫
+                            </div>
+
+                            <span class="stat-status">
+                                Doanh thu
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Doanh thu hôm nay
+                        </p>
+
+                        <h3 id="totalRevenue">
+                            Đang tải...
+                        </h3>
+
+                        <p class="stat-description">
+                            Tổng tiền từ thanh toán thành công
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 PAYMENT OVERVIEW
+            ====================================================== -->
+
+            <section class="section-block payment-dashboard-section" hidden>
+
+
+                <!-- PAYMENT HEADING -->
+                <div class="payment-dashboard-heading">
+
+                    <div>
+                        <h2>Tình hình thanh toán</h2>
+
+                        <p>
+                            Theo dõi giao dịch và doanh thu của BeautyShop.
+                        </p>
+                    </div>
+
+
+                    <a
+                        href="payments.html"
+                        class="payment-dashboard-link">
+
+                        Quản lý thanh toán →
+
+                    </a>
+
+                </div>
+
+
+                <!-- PAYMENT STATISTICS -->
+                <div class="payment-dashboard-metrics">
+
+
+                    <!-- PAID TRANSACTIONS -->
+                    <article class="payment-dashboard-metric">
+
+                        <span>
+                            Giao dịch đã thanh toán
+                        </span>
+
+                        <strong id="dashboardPaidPayments">
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <!-- PENDING TRANSACTIONS -->
+                    <article class="payment-dashboard-metric">
+
+                        <span>
+                            Giao dịch đang chờ
+                        </span>
+
+                        <strong id="dashboardPendingPayments">
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <!-- PENDING BANK TRANSFERS -->
+                    <article class="payment-dashboard-metric">
+
+                        <span>
+                            Chuyển khoản chờ đối soát
+                        </span>
+
+                        <strong id="dashboardPendingTransfers">
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <!-- TOTAL REVENUE -->
+                    <article class="payment-dashboard-metric revenue">
+
+                        <span>
+                            Tổng doanh thu đã thu
+                        </span>
+
+                        <strong id="dashboardPaymentTotalRevenue">
+                            0 ₫
+                        </strong>
+
+                    </article>
+
+                </div>
+
+
+                <!-- RECENT TRANSACTIONS -->
+                <article class="payment-dashboard-card">
+
+                    <h3>Giao dịch gần đây</h3>
+
+                    <div class="payment-dashboard-table-wrap">
+
+                        <table class="payment-dashboard-table">
+
+                            <thead>
+                                <tr>
+
+                                    <th>Mã hóa đơn</th>
+
+                                    <th>Khách hàng</th>
+
+                                    <th>Phương thức</th>
+
+                                    <th>Số tiền</th>
+
+                                    <th>Trạng thái</th>
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody id="dashboardPaymentTable">
+
+                                <tr>
+
+                                    <td
+                                        colspan="5"
+                                        class="dashboard-payment-empty">
+
+                                        Đang tải giao dịch...
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <!-- PAYMENT ERROR MESSAGE -->
+                    <p
+                        id="dashboardPaymentMessage"
+                        role="status">
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- =====================================================
+                 APPOINTMENTS AND PRODUCTS
+            ====================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- RECENT APPOINTMENTS -->
+                <article class="content-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2>Lịch hẹn gần đây</h2>
+
+                            <p>
+                                Theo dõi lịch hẹn của khách hàng
+                            </p>
+                        </div>
+
+                        <a
+                            href="appointments.html"
+                            class="text-link">
+
+                            Xem tất cả →
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- APPOINTMENT TABLE -->
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+
+                                    <th>Khách hàng</th>
+
+                                    <th>Dịch vụ</th>
+
+                                    <th>Thời gian</th>
+
+                                    <th>Trạng thái</th>
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody id="appointmentTable">
+
+                                <tr>
+                                    <td colspan="4">
+                                        Đang tải lịch hẹn...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FEATURED PRODUCTS -->
+                <article class="content-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2>Sản phẩm nổi bật</h2>
+
+                            <p>
+                                Một số sản phẩm trong cửa hàng
+                            </p>
+                        </div>
+
+                        <a
+                            href="products.html"
+                            class="text-link">
+
+                            Xem tất cả →
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- FEATURED PRODUCT LIST -->
+                    <div
+                        class="product-list"
+                        id="featuredProducts">
+
+                        <p>Đang tải sản phẩm...</p>
+
+                    </div>
+
+
+                    <a
+                        href="products.html"
+                        class="secondary-button">
+
+                        Quản lý sản phẩm
+
+                    </a>
+
+                </article>
+
+            </section>
+
+
+            <!-- =====================================================
+                 QUICK ACTIONS
+            ====================================================== -->
+
+            <section class="section-block quick-actions-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Truy cập nhanh</h2>
+
+                        <p>
+                            Các chức năng thường dùng
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions-grid">
+
+
+                    <!-- PRODUCTS -->
+                    <a
+                        href="products.html"
+                        class="quick-action">
+
+                        <span class="quick-action-icon pink">
+                            ♡
+                        </span>
+
+                        <span>
+                            <strong>Thêm sản phẩm</strong>
+
+                            <small>
+                                Quản lý danh mục mỹ phẩm
+                            </small>
+                        </span>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- CUSTOMERS -->
+                    <a
+                        href="customers.html"
+                        class="quick-action">
+
+                        <span class="quick-action-icon purple">
+                            ♙
+                        </span>
+
+                        <span>
+                            <strong>Khách hàng</strong>
+
+                            <small>
+                                Xem thông tin khách hàng
+                            </small>
+                        </span>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- APPOINTMENTS -->
+                    <a
+                        href="appointments.html"
+                        class="quick-action">
+
+                        <span class="quick-action-icon orange">
+                            ▣
+                        </span>
+
+                        <span>
+                            <strong>Tạo lịch hẹn</strong>
+
+                            <small>
+                                Quản lý lịch đặt dịch vụ
+                            </small>
+                        </span>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- SERVICES -->
+                    <a
+                        href="services.html"
+                        class="quick-action">
+
+                        <span class="quick-action-icon green">
+                            ✧
+                        </span>
+
+                        <span>
+                            <strong>Dịch vụ</strong>
+
+                            <small>
+                                Quản lý dịch vụ làm đẹp
+                            </small>
+                        </span>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 FOOTER
+            ====================================================== -->
+
+            <footer class="footer">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    BeautyShop. All rights reserved.
+                </p>
+
+                <p>
+                    Chăm sóc sắc đẹp, nâng tầm trải nghiệm.
+                </p>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     SUPPORT DIALOG
+====================================================== -->
+
+<dialog
+    id="supportDialog"
+    class="dashboard-support-dialog">
+
+
+    <!-- SUPPORT HEADER -->
+    <div class="support-dialog-heading">
+
+        <div>
+
+            <span class="welcome-tag">
+                BEAUTYSHOP SUPPORT
+            </span>
+
+            <h2>Trung tâm hỗ trợ</h2>
+
+            <p>
+                Hướng dẫn sử dụng hệ thống BeautyShop.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="closeSupportDialog"
+            class="support-close-button"
+            aria-label="Đóng">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <!-- SUPPORT CONTENT -->
+    <div class="support-content">
+
+
+        <!-- ACCOUNT SUPPORT -->
+        <article class="support-item">
+
+            <span class="support-item-icon">
+                ♙
+            </span>
+
+            <div>
+
+                <h3>Tài khoản và đăng nhập</h3>
+
+                <p>
+                    Kiểm tra tài khoản đăng nhập, quyền truy cập
+                    và trạng thái phiên làm việc.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- ORDER SUPPORT -->
+        <article class="support-item">
+
+            <span class="support-item-icon">
+                ▤
+            </span>
+
+            <div>
+
+                <h3>Quản lý đơn hàng</h3>
+
+                <p>
+                    Tra cứu hóa đơn, xem chi tiết và theo dõi
+                    trạng thái thanh toán.
+                </p>
+
+                <a href="orders.html">
+                    Mở quản lý đơn hàng →
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PAYMENT SUPPORT -->
+        <article class="support-item">
+
+            <span class="support-item-icon">
+                ₫
+            </span>
+
+            <div>
+
+                <h3>Thanh toán</h3>
+
+                <p>
+                    Kiểm tra giao dịch tiền mặt, chuyển khoản
+                    và xác nhận các giao dịch đang chờ.
+                </p>
+
+                <a href="payments.html">
+                    Mở quản lý thanh toán →
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- APPOINTMENT SUPPORT -->
+        <article class="support-item">
+
+            <span class="support-item-icon">
+                ▣
+            </span>
+
+            <div>
+
+                <h3>Quản lý lịch hẹn</h3>
+
+                <p>
+                    Kiểm tra thông tin khách hàng, thời gian
+                    và trạng thái lịch hẹn.
+                </p>
+
+                <a href="appointments.html">
+                    Mở quản lý lịch hẹn →
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- SUPPORT NOTE -->
+    <p class="support-note">
+
+        Nếu gặp lỗi hệ thống hoặc lỗi tài khoản, vui lòng liên hệ
+        quản trị viên phụ trách BeautyShop.
+
+    </p>
+
+</dialog>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<!-- APP.JS: QUẢN LÝ PHIÊN VÀ ĐĂNG XUẤT -->
+<script src="js/auth.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/profile.js"></script>
+
+<!-- DASHBOARD.JS: THỐNG KÊ KINH DOANH, LỊCH HẸN, SẢN PHẨM -->
+<script src="js/dashboard.js"></script>
+
+<!-- DASHBOARD PAYMENT: THỐNG KÊ VÀ GIAO DỊCH -->
+<script src="js/dashboard-payment.js"></script>
+
+<!-- DASHBOARD INTERACTIONS: TÌM KIẾM, HỖ TRỢ, THÔNG BÁO -->
+<script src="js/dashboard-interactions.js"></script>
+
+
+<!-- =====================================================
+     INLINE JAVASCRIPT
+====================================================== -->
+
+<script>
+"use strict";
+
+
+// =====================================================
+// 1. NÚT LÀM MỚI DASHBOARD
+// =====================================================
+
+document.getElementById("refreshDashboard")
+    ?.addEventListener("click", function () {
+
+        window.location.reload();
+
+    });
+
+</script>
+
+<!-- INPUT CHỌN AVATAR -->
+<input
+    type="file"
+    id="profileAvatarInput"
+    accept="image/png,image/jpeg,image/webp"
+    hidden
+>
+
+<!-- PROFILE DIALOG -->
+<dialog id="profileDialog" class="profile-dialog">
+
+    <div class="profile-dialog-content">
+
+        <div class="profile-dialog-header">
+
+            <h2>Thông tin tài khoản</h2>
+
+            <button
+                type="button"
+                class="profile-dialog-close"
+                id="closeProfileDialog">
+                ×
+            </button>
+
+        </div>
+
+        <div class="profile-dialog-user">
+
+            <div class="profile-avatar" id="dialogAvatar">
+                BS
+            </div>
+
+            <strong id="dialogUserName">Đang tải...</strong>
+
+            <span id="dialogUserRole">...</span>
+
+        </div>
+
+        <div class="profile-detail">
+            <span>Tên đăng nhập</span>
+            <strong id="dialogUsername">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Mã nhân viên</span>
+            <strong id="dialogEmployeeId">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Chi nhánh</span>
+            <strong id="dialogBranchId">...</strong>
+        </div>
+
+    </div>
+
+</dialog>
+
+
+</body>
+</html>

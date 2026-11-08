@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "BeautyShop: Run Backend (loads backend/.env)",
+            "type": "shell",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\scripts\\run-backend.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "BeautyShop: Clean Verify",
+            "type": "shell",
+            "command": ".\\mvnw.cmd",
+            "args": ["clean", "verify"],
+            "options": {
+                "cwd": "${workspaceFolder}\\backend\\beautyshop-backend"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

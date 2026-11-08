@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý nhân viên | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/employees.css">
+</head>
+
+<body>
+<div class="app-container">
+
+    <!-- SIDEBAR: ĐỒNG BỘ CUSTOMERS -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span>
+                <span>Khách hàng</span>
+            </a>
+
+            <a href="employees.html" class="nav-item active">
+                <span class="nav-icon">♧</span>
+                <span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span>
+                <span>Dịch vụ làm đẹp</span>
+            </a>
+
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Lịch hẹn</span>
+            </a>
+
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span>
+                <span>Thanh toán</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                ↪ Đăng xuất
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Mở menu">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Quản lý nhân viên</h1>
+                    <p>Quản lý thông tin và tài khoản nhân viên.</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                        id="globalSearch"
+                        type="search"
+                        placeholder="Tìm kiếm nhân viên..."
+                        autocomplete="off">
+                </label>
+
+                <!-- USER PROFILE: ĐỒNG BỘ CUSTOMERS -->
+                <div class="profile-container">
+
+                    <button
+                        type="button"
+                        class="profile-trigger"
+                        id="profileTrigger"
+                        aria-expanded="false"
+                        aria-controls="profileDropdown">
+
+                        <div class="profile-avatar" id="profileAvatar">
+                            BS
+                        </div>
+
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+
+                        <span class="profile-chevron">⌄</span>
+
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" hidden>
+
+                        <div class="profile-dropdown-heading">
+
+                            <div class="profile-avatar" id="dropdownAvatar">
+                                BS
+                            </div>
+
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item danger"
+                            id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <!-- INTRO -->
+            <section class="section-block">
+
+                <div class="employee-page-intro">
+
+                    <div>
+                        <h2>Danh sách nhân viên</h2>
+                        <p>Theo dõi thông tin, chức vụ và trạng thái nhân viên.</p>
+                    </div>
+
+                    <div class="intro-actions">
+
+                        <button
+                            type="button"
+                            id="backupEmployeesButton"
+                            class="btn btn-backup"
+                            hidden>
+                            <span>⇩</span>
+                            Sao lưu dữ liệu
+                        </button>
+
+                        <button
+                            type="button"
+                            id="restoreEmployeesButton"
+                            class="btn btn-refresh"
+                            hidden>
+                            <span>↥</span>
+                            Khôi phục dữ liệu
+                        </button>
+
+                        <input
+                            type="file"
+                            id="restoreEmployeesInput"
+                            accept=".json,application/json"
+                            hidden>
+
+                        <button
+                            type="button"
+                            id="manageAccountsButton"
+                            class="btn btn-refresh"
+                            hidden>
+                            <span>♙</span>
+                            Quản lý tài khoản
+                        </button>
+
+                        <button
+                            type="button"
+                            id="addButton"
+                            class="btn btn-primary"
+                            hidden>
+                            <span>＋</span>
+                            Thêm nhân viên
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- STATISTICS -->
+                <div class="employee-statistics">
+
+                    <div class="employee-stat-card">
+                        <div class="stat-icon stat-icon-purple">♧</div>
+
+                        <div class="stat-content">
+                            <span>Tổng nhân viên</span>
+                            <strong id="totalEmployees">0</strong>
+                            <small>Nhân viên trong hệ thống</small>
+                        </div>
+                    </div>
+
+                    <div class="employee-stat-card">
+                        <div class="stat-icon stat-icon-green">✓</div>
+
+                        <div class="stat-content">
+                            <span>Đang hoạt động</span>
+                            <strong id="activeEmployees">0</strong>
+                            <small>Nhân viên đang làm việc</small>
+                        </div>
+                    </div>
+
+                    <div class="employee-stat-card">
+                        <div class="stat-icon stat-icon-gold">♛</div>
+
+                        <div class="stat-content">
+                            <span>Quản lý</span>
+                            <strong id="managerEmployees">0</strong>
+                            <small>Nhân viên có chức vụ quản lý</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- USER ACCOUNTS -->
+                <section
+                    class="employee-list-card account-management-card"
+                    id="accountManagementPanel"
+                    hidden>
+
+                    <div class="employee-list-heading">
+                        <div>
+                            <h3>Tài khoản đăng nhập</h3>
+                            <p>Tạo và quản lý quyền truy cập của nhân viên.</p>
+                        </div>
+
+                        <div class="account-panel-actions">
+                            <button
+                                type="button"
+                                class="btn btn-refresh"
+                                id="refreshAccountsButton">
+                                ↻ Làm mới
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-cancel"
+                                id="closeAccountsButton">
+                                Đóng
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="accountCreateForm" class="account-create-form">
+                        <div class="employee-form-grid">
+                            <div class="form-group">
+                                <label for="accountEmployeeSelect">
+                                    Nhân viên chưa có tài khoản <span>*</span>
+                                </label>
+                                <select id="accountEmployeeSelect" required>
+                                    <option value="">Chọn nhân viên</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="accountTemporaryPassword">
+                                    Mật khẩu tạm thời <span>*</span>
+                                </label>
+                                <input
+                                    type="password"
+                                    id="accountTemporaryPassword"
+                                    minlength="8"
+                                    maxlength="72"
+                                    autocomplete="new-password"
+                                    placeholder="Ít nhất 8 ký tự"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="account-form-actions">
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="createAccountButton">
+                                Tạo tài khoản
+                            </button>
+                        </div>
+                    </form>
+
+                    <div
+                        class="employee-message account-message"
+                        id="accountMessage"
+                        role="status"
+                        aria-live="polite"
+                        hidden>
+                    </div>
+
+                    <div class="employee-table-wrapper">
+                        <table class="employee-table account-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Nhân viên</th>
+                                    <th>Quyền đăng nhập</th>
+                                    <th>Trạng thái</th>
+                                    <th>Đổi mật khẩu</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accountTableBody">
+                                <tr>
+                                    <td colspan="6" class="table-loading">
+                                        Đang tải tài khoản...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- EMPLOYEE FORM -->
+                <section
+                    class="employee-form-card"
+                    id="formCard"
+                    hidden>
+
+                    <div class="employee-form-heading">
+
+                        <div>
+                            <h3 id="formTitle">Thêm nhân viên mới</h3>
+                            <p>Nhập thông tin nhân viên bên dưới.</p>
+                        </div>
+
+                        <button
+                            class="form-close-button"
+                            id="cancelButton"
+                            type="button"
+                            aria-label="Đóng biểu mẫu">
+                            &times;
+                        </button>
+
+                    </div>
+
+                    <form id="employeeForm">
+
+                        <input type="hidden" id="documentId">
+                        <input type="hidden" id="documentRev">
+
+                        <div class="employee-form-grid">
+
+                            <div class="form-group">
+                                <label for="fullName">
+                                    Họ và tên <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fullName"
+                                    placeholder="Nhập họ và tên"
+                                    maxlength="100"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">
+                                    Tên đăng nhập <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    placeholder="Nhập tên đăng nhập"
+                                    maxlength="50"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">
+                                    Số điện thoại
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    placeholder="Nhập số điện thoại"
+                                    maxlength="20">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="example@gmail.com"
+                                    maxlength="150">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">
+                                    Chức vụ <span>*</span>
+                                </label>
+
+                                <select id="role" required>
+                                    <option value="staff">Nhân viên</option>
+                                    <option value="manager">Quản lý</option>
+                                    <option value="admin">Quản trị viên</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="branchId">
+                                    Mã chi nhánh
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="branchId"
+                                    placeholder="Nhập mã chi nhánh"
+                                    maxlength="50">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">
+                                    Trạng thái <span>*</span>
+                                </label>
+
+                                <select id="status" required>
+                                    <option value="active">Đang hoạt động</option>
+                                    <option value="inactive">Ngừng hoạt động</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="employee-form-actions">
+
+                            <button
+                                type="button"
+                                class="btn btn-cancel"
+                                id="cancelFormButton">
+                                Hủy
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="saveButton">
+                                Lưu nhân viên
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <!-- EMPLOYEE LIST -->
+                <section class="employee-list-card">
+
+                    <div class="employee-list-heading">
+
+                        <div>
+                            <h3>Danh sách nhân viên</h3>
+                            <p>Thông tin nhân viên được lưu trong CouchDB.</p>
+                        </div>
+
+                        <button
+                            class="btn btn-refresh"
+                            id="refreshButton"
+                            type="button">
+                            ↻ Làm mới
+                        </button>
+
+                    </div>
+
+                    <!-- FILTER -->
+                    <div class="employee-filter-bar">
+
+                        <div class="filter-search">
+                            <span>⌕</span>
+
+                            <input
+                                type="search"
+                                id="searchInput"
+                                placeholder="Tìm theo mã, tên, tài khoản, số điện thoại...">
+                        </div>
+
+                        <select id="roleFilter">
+                            <option value="">Tất cả chức vụ</option>
+                            <option value="admin">Quản trị viên</option>
+                            <option value="manager">Quản lý</option>
+                            <option value="staff">Nhân viên</option>
+                        </select>
+
+                        <select id="statusFilter">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="inactive">Ngừng hoạt động</option>
+                        </select>
+
+                    </div>
+
+                    <div
+                        class="employee-message"
+                        id="message"
+                        role="status"
+                        aria-live="polite"
+                        hidden>
+                    </div>
+
+                    <!-- TABLE -->
+                    <div class="employee-table-wrapper">
+
+                        <table class="employee-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Mã nhân viên</th>
+                                    <th>Họ và tên</th>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Chức vụ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Chi nhánh</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="employeeTableBody">
+
+                                <tr>
+                                    <td colspan="9" class="table-loading">
+                                        Đang tải dữ liệu nhân viên...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <div class="employee-pagination">
+
+                        <div class="pagination-info" id="pageInfo">
+                            Trang 1 / 1
+                        </div>
+
+                        <div class="pagination-controls">
+
+                            <select
+                                id="pageSize"
+                                aria-label="Số dòng mỗi trang">
+                                <option value="5">5 / trang</option>
+                                <option value="10" selected>10 / trang</option>
+                                <option value="20">20 / trang</option>
+                                <option value="50">50 / trang</option>
+                            </select>
+
+                            <button
+                                type="button"
+                                id="prevButton"
+                                class="pagination-button"
+                                aria-label="Trang trước">
+                                ‹
+                            </button>
+
+                            <button
+                                type="button"
+                                id="nextButton"
+                                class="pagination-button"
+                                aria-label="Trang sau">
+                                ›
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <p>© <span id="currentYear"></span> BeautyShop.</p>
+                <p>Chăm sóc sắc đẹp, nâng tầm trải nghiệm.</p>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- PROFILE AVATAR INPUT -->
+<input
+    type="file"
+    id="profileAvatarInput"
+    accept="image/png,image/jpeg,image/webp"
+    hidden>
+
+<!-- PROFILE DIALOG: ĐỒNG BỘ CUSTOMERS -->
+<dialog id="profileDialog" class="profile-dialog">
+
+    <div class="profile-dialog-content">
+
+        <div class="profile-dialog-header">
+
+            <h2>Thông tin tài khoản</h2>
+
+            <button
+                type="button"
+                class="profile-dialog-close"
+                id="closeProfileDialog">
+                ×
+            </button>
+
+        </div>
+
+        <div class="profile-dialog-user">
+
+            <div class="profile-avatar" id="dialogAvatar">
+                BS
+            </div>
+
+            <strong id="dialogUserName">Đang tải...</strong>
+            <span id="dialogUserRole">...</span>
+
+        </div>
+
+        <div class="profile-detail">
+            <span>Tên đăng nhập</span>
+            <strong id="dialogUsername">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Mã nhân viên</span>
+            <strong id="dialogEmployeeId">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Chi nhánh</span>
+            <strong id="dialogBranchId">...</strong>
+        </div>
+
+    </div>
+
+</dialog>
+
+<!-- JAVASCRIPT -->
+<script src="js/app.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/employees.js"></script>
+
+</body>
+</html>

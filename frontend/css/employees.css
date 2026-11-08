@@ -1,0 +1,1026 @@
+/* =========================================
+   BEAUTYSHOP - EMPLOYEES PAGE
+   Theme: Pink / Rose
+========================================= */
+
+:root {
+    --employee-primary: #bd6687;
+    --employee-primary-dark: #9d496b;
+    --employee-primary-light: #fbeaf1;
+    --employee-purple: #8b70c9;
+    --employee-orange: #e49a55;
+    --employee-green: #398b65;
+    --employee-gold: #c39432;
+}
+
+/* =========================================
+   PAGE INTRO
+========================================= */
+
+.employee-page-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 25px;
+    animation: employeeFadeUp 0.55s ease both;
+}
+
+.employee-page-intro h2 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.employee-page-intro p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.intro-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.employee-page-intro .btn,
+.employee-list-heading .btn,
+.employee-form-actions .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.employee-page-intro .btn[hidden] {
+    display: none !important;
+}
+
+.employee-page-intro .btn:hover,
+.employee-list-heading .btn:hover,
+.employee-form-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+.employee-page-intro .btn:active,
+.employee-list-heading .btn:active,
+.employee-form-actions .btn:active {
+    transform: scale(0.97);
+}
+
+/* Thêm nhân viên */
+
+.employee-page-intro .btn-primary,
+.employee-form-actions .btn-primary {
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        #c87594,
+        #ad5276
+    );
+    border-color: #bd6687;
+    box-shadow: 0 5px 13px rgba(189, 102, 135, 0.2);
+}
+
+.employee-page-intro .btn-primary:hover,
+.employee-form-actions .btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        #ad5276,
+        #923e61
+    );
+    box-shadow: 0 8px 18px rgba(189, 102, 135, 0.3);
+}
+
+/* Sao lưu */
+
+.employee-page-intro .btn-backup {
+    color: #237443;
+    background: #e8f7ee;
+    border-color: #c6ead3;
+}
+
+.employee-page-intro .btn-backup:hover {
+    color: #fff;
+    background: #32885a;
+    border-color: #32885a;
+    box-shadow: 0 6px 15px rgba(50, 136, 90, 0.2);
+}
+
+/* Khôi phục */
+
+#restoreEmployeesButton {
+    color: #7353a8;
+    background: #f0eafd;
+    border-color: #ded0f8;
+}
+
+#restoreEmployeesButton:hover {
+    color: #fff;
+    background: #8061b6;
+    border-color: #8061b6;
+    box-shadow: 0 6px 15px rgba(128, 97, 182, 0.2);
+}
+
+/* Làm mới */
+
+.employee-list-heading .btn-refresh {
+    color: #a34e72;
+    background: #fff0f5;
+    border-color: #f0cfdd;
+}
+
+.employee-list-heading .btn-refresh:hover {
+    color: #fff;
+    background: #bd6687;
+    border-color: #bd6687;
+    box-shadow: 0 6px 15px rgba(189, 102, 135, 0.2);
+}
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.employee-statistics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.employee-stat-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-height: 125px;
+    padding: 22px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    animation: employeeFadeUp 0.6s ease both;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.employee-stat-card:nth-child(1) {
+    animation-delay: 0.08s;
+}
+
+.employee-stat-card:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.employee-stat-card:nth-child(3) {
+    animation-delay: 0.24s;
+}
+
+.employee-stat-card::after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 100px;
+    right: -35px;
+    top: -40px;
+    border-radius: 50%;
+    background: rgba(189, 102, 135, 0.055);
+    transition: transform 0.35s ease;
+}
+
+.employee-stat-card:hover {
+    transform: translateY(-5px);
+    border-color: #e5b8ca;
+    box-shadow: 0 12px 28px rgba(99, 51, 75, 0.12);
+}
+
+.employee-stat-card:hover::after {
+    transform: scale(1.6);
+}
+
+.stat-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 23px;
+    transition: transform 0.3s ease;
+}
+
+.employee-stat-card:hover .stat-icon {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+.stat-icon-purple {
+    color: #8062bd;
+    background: #f0eafd;
+}
+
+.stat-icon-green {
+    color: #32865b;
+    background: #e5f6ec;
+}
+
+.stat-icon-gold {
+    color: #b4862d;
+    background: #fff4d9;
+}
+
+.stat-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-content span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.stat-content strong {
+    color: var(--text);
+    font-size: 27px;
+    font-weight: 750;
+    line-height: 1.2;
+}
+
+.stat-content small {
+    color: #9b8c96;
+    font-size: 11px;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.employee-form-card {
+    margin-bottom: 25px;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    animation: employeeFormShow 0.35s ease both;
+}
+
+.employee-form-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 24px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #f0e5eb;
+}
+
+.employee-form-heading h3 {
+    margin: 0 0 7px;
+    font-size: 20px;
+    color: var(--text);
+}
+
+.employee-form-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.form-close-button {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: #a34e72;
+    background: #fff0f5;
+    border: none;
+    border-radius: 9px;
+    font-size: 24px;
+    transition: all 0.2s ease;
+}
+
+.form-close-button:hover {
+    color: #fff;
+    background: #bd6687;
+    transform: rotate(90deg);
+}
+
+.employee-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.employee-form-grid .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.employee-form-grid .form-group label {
+    color: #624d5a;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.employee-form-grid .form-group label span {
+    color: #d34d68;
+}
+
+.employee-form-grid input,
+.employee-form-grid select {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 12px;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.employee-form-grid input:hover,
+.employee-form-grid select:hover {
+    border-color: #d9a1b7;
+}
+
+.employee-form-grid input:focus,
+.employee-form-grid select:focus {
+    background: #fffafd;
+    border-color: var(--employee-primary);
+    box-shadow: 0 0 0 4px rgba(189, 102, 135, 0.12);
+}
+
+.employee-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0e5eb;
+}
+
+.employee-form-actions .btn-cancel {
+    color: #725e69;
+    background: #f7f3f5;
+    border-color: #e8dfe4;
+}
+
+.employee-form-actions .btn-cancel:hover {
+    color: #fff;
+    background: #8c7b85;
+}
+
+/* =========================================
+   EMPLOYEE LIST
+========================================= */
+
+.employee-list-card {
+    padding: 23px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    animation: employeeFadeUp 0.65s ease both;
+}
+
+.employee-list-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.employee-list-heading h3 {
+    margin: 0 0 7px;
+    color: var(--text);
+    font-size: 19px;
+}
+
+.employee-list-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   FILTER
+========================================= */
+
+.employee-filter-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.employee-filter-bar .filter-search {
+    display: flex;
+    align-items: center;
+    flex: 1 1 300px;
+    min-width: 200px;
+    min-height: 43px;
+    padding: 0 12px;
+    background: #fffafd;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    transition: all 0.2s ease;
+}
+
+.employee-filter-bar .filter-search:focus-within {
+    background: #fff;
+    border-color: var(--employee-primary);
+    box-shadow: 0 0 0 4px rgba(189, 102, 135, 0.1);
+}
+
+.employee-filter-bar .filter-search span {
+    color: #b17b94;
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.employee-filter-bar .filter-search input {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.employee-filter-bar select {
+    min-width: 165px;
+    min-height: 43px;
+    padding: 9px 12px;
+    color: #624d5a;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.employee-filter-bar select:focus {
+    border-color: var(--employee-primary);
+    box-shadow: 0 0 0 4px rgba(189, 102, 135, 0.1);
+}
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.employee-message:not([hidden]) {
+    margin: 12px 0;
+    padding: 12px 15px;
+    color: #80506a;
+    background: #fff0f5;
+    border: 1px solid #f0cfdd;
+    border-radius: 9px;
+    animation: employeeFadeUp 0.25s ease both;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.employee-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #eee2e9;
+    border-radius: 11px;
+}
+
+.employee-table {
+    width: 100%;
+    min-width: 1150px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+.employee-table thead {
+    background: #fff3f7;
+}
+
+.employee-table th {
+    padding: 15px 13px;
+    color: #80566b;
+    font-size: 12px;
+    font-weight: 750;
+    white-space: nowrap;
+    border-bottom: 1px solid #f0dce5;
+}
+
+.employee-table td {
+    padding: 14px 13px;
+    color: #594653;
+    font-size: 13px;
+    border-bottom: 1px solid #f3eaf0;
+    transition: background 0.2s ease;
+}
+
+.employee-table tbody tr {
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.employee-table tbody tr:hover {
+    background: #fff8fb;
+}
+
+.employee-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.employee-table .table-loading {
+    padding: 35px 15px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* =========================================
+   ROLE BADGES
+========================================= */
+
+.employee-table .role-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.employee-table .role-badge.admin {
+    color: #9a4f70;
+    background: #fce8f0;
+}
+
+.employee-table .role-badge.manager {
+    color: #7755ad;
+    background: #eee8fb;
+}
+
+.employee-table .role-badge.staff {
+    color: #3d7d66;
+    background: #e6f5ed;
+}
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.employee-table .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.employee-table .badge.active {
+    color: #237443;
+    background: #e5f6ec;
+}
+
+.employee-table .badge.active::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #32a66a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(50, 166, 106, 0.12);
+}
+
+.employee-table .badge.inactive {
+    color: #ae4545;
+    background: #fdeaea;
+}
+
+.employee-table .badge.inactive::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #d45b5b;
+    border-radius: 50%;
+}
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.employee-table .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 2px;
+    padding: 7px 11px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.employee-table .edit-button {
+    color: #94621d;
+    background: #fff3d9;
+    border-color: #f4dfb2;
+}
+
+.employee-table .edit-button:hover {
+    color: #fff;
+    background: #d49a36;
+    border-color: #d49a36;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 154, 54, 0.2);
+}
+
+.employee-table .delete-button {
+    color: #b33c3c;
+    background: #fdeaea;
+    border-color: #f4cccc;
+}
+
+.employee-table .delete-button:hover {
+    color: #fff;
+    background: #c84f4f;
+    border-color: #c84f4f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(200, 79, 79, 0.2);
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.employee-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.employee-pagination .pagination-info {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.employee-pagination .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.employee-pagination select {
+    min-height: 36px;
+    padding: 7px 10px;
+    color: #72566a;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+}
+
+.employee-pagination .pagination-button {
+    display: grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    color: #a65376;
+    background: #fff0f5;
+    border: 1px solid #efd1de;
+    border-radius: 8px;
+    font-size: 20px;
+    transition: all 0.2s ease;
+}
+
+.employee-pagination .pagination-button:hover:not(:disabled) {
+    color: #fff;
+    background: #bd6687;
+    border-color: #bd6687;
+    transform: translateY(-2px);
+}
+
+.employee-pagination .pagination-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   LOGIN ACCOUNT MANAGEMENT
+========================================= */
+
+.account-management-card {
+    margin: 20px 0;
+    animation: employeeFormShow 0.3s ease both;
+}
+
+.account-management-card[hidden] {
+    display: none !important;
+}
+
+#manageAccountsButton[hidden] {
+    display: none !important;
+}
+
+.account-panel-actions,
+.account-row-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.account-create-form {
+    margin: 20px 0;
+    padding: 18px 0;
+    border-top: 1px solid #f0e7ed;
+    border-bottom: 1px solid #f0e7ed;
+}
+
+.account-create-form .employee-form-grid {
+    align-items: end;
+}
+
+.account-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.account-form-actions .btn-primary {
+    min-width: 150px;
+    min-height: 40px;
+    border: 1px solid #bd6687;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #c87594, #ad5276);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.account-form-actions .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(189, 102, 135, 0.24);
+}
+
+.account-form-actions .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.account-panel-actions .btn-refresh,
+.account-panel-actions .btn-cancel {
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid #e8dce3;
+    border-radius: 8px;
+    background: #fff;
+    color: #695b64;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.account-panel-actions .btn-refresh:hover,
+.account-panel-actions .btn-cancel:hover {
+    border-color: #d8b8c7;
+    background: #fff5f8;
+}
+
+.account-table select {
+    min-height: 34px;
+    max-width: 145px;
+    padding: 6px 8px;
+    border: 1px solid #e8dce3;
+    border-radius: 7px;
+    background: #fff;
+    color: #51454d;
+    font: inherit;
+    font-size: 12px;
+}
+
+.account-employee-id {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.account-row-actions .action-button {
+    min-height: 32px;
+    padding: 0 9px;
+    border: 1px solid #ead8e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #85516a;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.account-row-actions .reset-password-button {
+    border-color: #d9d0eb;
+    color: #65518d;
+}
+
+.account-row-actions .action-button:hover:not(:disabled) {
+    background: #fff3f7;
+}
+
+.account-row-actions .action-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.account-message.error {
+    color: #b42323;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes employeeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes employeeFormShow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+    .employee-statistics {
+        gap: 12px;
+    }
+
+    .employee-stat-card {
+        padding: 17px;
+    }
+
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    .employee-page-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .intro-actions {
+        width: 100%;
+    }
+
+    .intro-actions .btn {
+        flex: 1 1 auto;
+    }
+
+    .employee-statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-stat-card {
+        min-height: 100px;
+    }
+
+    .employee-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-list-card {
+        padding: 16px;
+    }
+
+    .employee-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .employee-form-card {
+        padding: 17px;
+    }
+
+    .employee-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .employee-form-actions .btn {
+        width: 100%;
+    }
+
+    .employee-list-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .employee-filter-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .employee-filter-bar .filter-search,
+    .employee-filter-bar select {
+        width: 100%;
+    }
+}
+
+/* Tôn trọng cài đặt giảm chuyển động của hệ điều hành */
+@media (prefers-reduced-motion: reduce) {
+    .employee-page-intro,
+    .employee-stat-card,
+    .employee-list-card,
+    .employee-form-card {
+        animation: none;
+    }
+
+    .employee-stat-card,
+    .employee-stat-card *,
+    .employee-table *,
+    .employee-page-intro *,
+    .employee-form-card *,
+    .employee-list-card * {
+        transition: none !important;
+    }
+}

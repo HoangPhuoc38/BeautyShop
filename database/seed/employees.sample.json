@@ -1,0 +1,16 @@
+{
+  "docs": [
+    {
+      "_id": "sample_emp001",
+      "type": "employee",
+      "employee_id": "SAMPLE-EMP-001",
+      "full_name": "Nhân viên mẫu A",
+      "username": "sample.staff",
+      "role": "staff",
+      "phone": "0000000000",
+      "email": "sample.staff@example.com",
+      "status": "active",
+      "branch_id": "sample_branch_001"
+    }
+  ]
+}

@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+            <a href="products.html" class="nav-item active">
+                <span class="nav-icon">♡</span><span>Sản phẩm</span>
+            </a>
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span><span>Khách hàng</span>
+            </a>
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span><span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span><span>Dịch vụ làm đẹp</span>
+            </a>
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span><span>Lịch hẹn</span>
+            </a>
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span><span>Đơn hàng</span>
+            </a>
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span><span>Thanh toán</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                ↪ Đăng xuất
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle"
+                        type="button" aria-label="Mở menu">☰</button>
+                <div>
+                    <h1>Quản lý sản phẩm</h1>
+                    <p>Thêm, sửa, tìm kiếm và theo dõi kho hàng.</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input id="globalSearch" type="search"
+                           placeholder="Tìm mã, tên sản phẩm..."
+                           autocomplete="off">
+                </label>
+
+                <div class="profile-container">
+                    <button type="button" class="profile-trigger"
+                            id="profileTrigger" aria-expanded="false"
+                            aria-controls="profileDropdown">
+
+                        <div class="profile-avatar" id="profileAvatar">BS</div>
+
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+
+                        <span class="profile-chevron">⌄</span>
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" hidden>
+                        <div class="profile-dropdown-heading">
+                            <div class="profile-avatar" id="dropdownAvatar">BS</div>
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button type="button" class="profile-menu-item"
+                                id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+
+                        <button type="button" class="profile-menu-item"
+                                id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button type="button"
+                                class="profile-menu-item danger"
+                                id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-content">
+            <section class="section-block">
+
+                <div class="section-heading product-section-heading">
+                    <div>
+                        <h2>Danh sách sản phẩm</h2>
+                        <p>Dữ liệu được lấy từ Spring Boot API và CouchDB.</p>
+                    </div>
+
+                    <div class="product-heading-actions">
+                        <button type="button" class="secondary-button"
+                                id="refreshProductsButton">↻ Tải lại</button>
+
+                        <button type="button" class="secondary-button"
+                            id="backupProductsButton" hidden>⇩ Sao lưu dữ liệu</button>
+
+                        <button type="button" class="primary-button"
+                            id="newProductButton" hidden>+ Thêm sản phẩm</button>
+                    </div>
+                </div>
+
+                <!-- THỐNG KÊ -->
+                <section class="product-statistics">
+
+                    <div class="product-stat-card total-product-card">
+                        <div class="product-stat-main">
+                            <div class="product-stat-icon pink">♡</div>
+                            <div class="product-stat-content">
+                                <span>Tổng sản phẩm</span>
+                                <strong id="totalProducts">0</strong>
+                            </div>
+                        </div>
+
+                        <div class="product-category-summary">
+                            <div class="product-category-heading">
+                                <strong>Thống kê danh mục</strong>
+                                <span id="categoryTotal">0 danh mục</span>
+                            </div>
+                            <div class="product-category-list"
+                                 id="productCategoryList">
+                                <p>Đang tải dữ liệu...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-stat-card">
+                        <div class="product-stat-icon green">✓</div>
+                        <div class="product-stat-content">
+                            <span>Đang kinh doanh</span>
+                            <strong id="activeProducts">0</strong>
+                            <small>Sản phẩm đang hoạt động</small>
+                        </div>
+                    </div>
+
+                    <div class="product-stat-card">
+                        <div class="product-stat-icon purple">◇</div>
+                        <div class="product-stat-content">
+                            <span>Ngừng kinh doanh</span>
+                            <strong id="inactiveProducts">0</strong>
+                            <small>Sản phẩm không hoạt động</small>
+                        </div>
+                    </div>
+
+                    <div class="product-stat-card">
+                        <div class="product-stat-icon orange">!</div>
+                        <div class="product-stat-content">
+                            <span>Sắp hết hàng</span>
+                            <strong id="lowStockProducts">0</strong>
+                            <small>Tồn kho từ 1 đến 5</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BỘ LỌC -->
+                <div class="product-filter-bar">
+                    <div class="product-filter-item product-search-item">
+                        <label for="productSearchInput">Tìm kiếm</label>
+                        <div class="product-search-box">
+                            <span>⌕</span>
+                            <input id="productSearchInput" type="search"
+                                   placeholder="Tên, mã, danh mục..."
+                                   autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="product-filter-item">
+                        <label for="filterCategory">Danh mục</label>
+                        <select id="filterCategory">
+                            <option value="all">Tất cả danh mục</option>
+                            <option value="nail_polish">Sơn móng</option>
+                            <option value="nail_care">Chăm sóc móng</option>
+                            <option value="skincare">Chăm sóc da</option>
+                            <option value="makeup">Trang điểm</option>
+                            <option value="lipstick">Son môi</option>
+                            <option value="haircare">Chăm sóc tóc</option>
+                            <option value="cosmetics">Mỹ phẩm</option>
+                            <option value="perfume">Nước hoa</option>
+                            <option value="tools">Dụng cụ làm đẹp</option>
+                            <option value="accessories">Phụ kiện</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="product-filter-item">
+                        <label for="filterStatus">Trạng thái</label>
+                        <select id="filterStatus">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option value="active" selected>Đang kinh doanh</option>
+                            <option value="inactive">Ngừng kinh doanh</option>
+                        </select>
+                    </div>
+
+                    <div class="product-filter-item">
+                        <label for="filterStock">Tồn kho</label>
+                        <select id="filterStock">
+                            <option value="all">Tất cả tồn kho</option>
+                            <option value="low">Sắp hết hàng (1 - 5)</option>
+                            <option value="normal">Còn hàng (> 5)</option>
+                            <option value="out">Hết hàng (0)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="primary-button"
+                            id="searchProductButton">Tìm kiếm</button>
+
+                    <button type="button" class="secondary-button"
+                            id="resetProductFilters">Đặt lại</button>
+                </div>
+
+                <div id="productMessage" class="product-message"
+                     role="status" aria-live="polite"></div>
+
+                <!-- FORM SẢN PHẨM -->
+                <div class="content-card product-form-card"
+                     id="productFormCard" hidden>
+
+                    <div class="card-heading">
+                        <div>
+                            <h2 id="formTitle">Thêm sản phẩm</h2>
+                            <p>Nhập thông tin sản phẩm bên dưới.</p>
+                        </div>
+                    </div>
+
+                    <form id="productForm">
+                        <input type="hidden" id="productDocId">
+                        <input type="hidden" id="productRevision">
+                        <input type="hidden" id="productCode">
+
+                        <div class="product-form-grid">
+                            <label>
+                                Tên sản phẩm *
+                                <input id="productName" name="name"
+                                       type="text" maxlength="150"
+                                       required>
+                            </label>
+
+                            <label>
+                                Danh mục *
+                                <select id="productCategory"
+                                        name="category" required>
+                                    <option value="nail_polish">Sơn móng</option>
+                                    <option value="nail_care">Chăm sóc móng</option>
+                                    <option value="skincare">Chăm sóc da</option>
+                                    <option value="makeup">Trang điểm</option>
+                                    <option value="lipstick">Son môi</option>
+                                    <option value="haircare">Chăm sóc tóc</option>
+                                    <option value="cosmetics">Mỹ phẩm</option>
+                                    <option value="perfume">Nước hoa</option>
+                                    <option value="tools">Dụng cụ làm đẹp</option>
+                                    <option value="accessories">Phụ kiện</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Giá bán (VNĐ) *
+                                <input id="productPrice" name="price"
+                                       type="number" min="0" step="1000"
+                                       required>
+                            </label>
+
+                            <label>
+                                Số lượng tồn kho *
+                                <input id="productStock" name="stock"
+                                       type="number" min="0" step="1"
+                                       required>
+                            </label>
+
+                            <label>
+                                Trạng thái
+                                <select id="productStatus" name="status">
+                                    <option value="active">Đang kinh doanh</option>
+                                    <option value="inactive">Ngừng kinh doanh</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="primary-button"
+                                    id="saveProductButton">Lưu sản phẩm</button>
+                            <button type="button" class="secondary-button"
+                                    id="cancelProductButton">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- BẢNG SẢN PHẨM -->
+                <div class="content-card">
+                    <div class="table-container">
+                        <table class="products-table">
+                            <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Danh mục</th>
+                                <th>Giá bán</th>
+                                <th>Tồn kho</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="7">Đang tải sản phẩm...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PHÂN TRANG -->
+                    <div class="product-pagination">
+                        <div class="pagination-info">
+                            Hiển thị
+                            <strong id="paginationStart">0</strong> -
+                            <strong id="paginationEnd">0</strong>
+                            trong tổng số
+                            <strong id="paginationTotal">0</strong> sản phẩm
+                        </div>
+
+                        <div class="pagination-controls">
+                            <label for="pageSize">Số sản phẩm:</label>
+
+                            <select id="pageSize">
+                                <option value="8" selected>8</option>
+                                <option value="12">12</option>
+                                <option value="20">20</option>
+                            </select>
+
+                            <button type="button" id="prevPageButton"
+                                    disabled>Trước</button>
+
+                            <div id="paginationNumbers"
+                                 class="pagination-numbers"></div>
+
+                            <button type="button" id="nextPageButton"
+                                    disabled>Sau</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>© <span id="currentYear"></span> BeautyShop.</p>
+                <p>Chăm sóc sắc đẹp, nâng tầm trải nghiệm.</p>
+            </footer>
+        </section>
+    </main>
+</div>
+
+<!-- CHỌN AVATAR -->
+<input type="file" id="profileAvatarInput"
+       accept="image/png,image/jpeg,image/webp" hidden>
+
+<!-- PROFILE DIALOG -->
+<dialog id="profileDialog" class="profile-dialog">
+    <div class="profile-dialog-content">
+        <div class="profile-dialog-header">
+            <h2>Thông tin tài khoản</h2>
+            <button type="button" class="profile-dialog-close"
+                    id="closeProfileDialog">×</button>
+        </div>
+
+        <div class="profile-dialog-user">
+            <div class="profile-avatar" id="dialogAvatar">BS</div>
+            <strong id="dialogUserName">Đang tải...</strong>
+            <span id="dialogUserRole">...</span>
+        </div>
+
+        <div class="profile-detail">
+            <span>Tên đăng nhập</span>
+            <strong id="dialogUsername">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Mã nhân viên</span>
+            <strong id="dialogEmployeeId">...</strong>
+        </div>
+
+        <div class="profile-detail">
+            <span>Chi nhánh</span>
+            <strong id="dialogBranchId">...</strong>
+        </div>
+    </div>
+</dialog>
+
+<script src="js/app.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

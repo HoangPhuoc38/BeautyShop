@@ -1,0 +1,11 @@
+{
+  "index": {
+    "fields": [
+      "type",
+      "status",
+      "category"
+    ]
+  },
+  "name": "idx_services_type_status_category",
+  "type": "json"
+}

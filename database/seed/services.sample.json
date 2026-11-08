@@ -1,0 +1,24 @@
+{
+  "docs": [
+    {
+      "_id": "sample_srv001",
+      "type": "service",
+      "service_id": "SAMPLE-SRV-001",
+      "name": "Sơn gel cơ bản (mẫu)",
+      "category": "nail",
+      "price": 150000,
+      "duration_minutes": 60,
+      "status": "active"
+    },
+    {
+      "_id": "sample_srv002",
+      "type": "service",
+      "service_id": "SAMPLE-SRV-002",
+      "name": "Chăm sóc móng (mẫu)",
+      "category": "nail_care",
+      "price": 100000,
+      "duration_minutes": 45,
+      "status": "active"
+    }
+  ]
+}

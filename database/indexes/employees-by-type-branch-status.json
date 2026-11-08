@@ -1,0 +1,11 @@
+{
+  "index": {
+    "fields": [
+      "type",
+      "branch_id",
+      "status"
+    ]
+  },
+  "name": "idx_employees_type_branch_status",
+  "type": "json"
+}

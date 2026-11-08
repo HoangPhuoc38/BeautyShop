@@ -1,0 +1,14 @@
+{
+    "_id": "usrXXX",
+    "type": "user",
+    "user_id": "USRXXX",
+    "username": "sample.username",
+    "employee_id": "EMPXXX",
+    "role": "staff",
+    "branch_id": "BRANCHXXX",
+    "status": "active",
+    "password_hash": "<VALID_BCRYPT_HASH_GENERATED_BY_BACKEND>",
+    "must_change_password": true,
+    "created_at": "<ISO_8601_TIMESTAMP>",
+    "updated_at": "<ISO_8601_TIMESTAMP>"
+}

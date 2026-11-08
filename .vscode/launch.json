@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "BeautyShop Backend",
+            "request": "launch",
+            "mainClass": "com.beautyshop.BeautyshopBackendApplication",
+            "projectName": "beautyshop-backend",
+            "cwd": "${workspaceFolder}/backend/beautyshop-backend",
+            "envFile": "${workspaceFolder}/backend/.env"
+        }
+    ]
+}

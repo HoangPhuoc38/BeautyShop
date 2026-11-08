@@ -1,0 +1,10 @@
+{
+  "index": {
+    "fields": [
+      "type",
+      "membership"
+    ]
+  },
+  "name": "idx_customers_type_membership",
+  "type": "json"
+}

@@ -1,0 +1,93 @@
+<!-- TÌNH HÌNH THANH TOÁN -->
+<section class="section-block payment-dashboard-section">
+
+    <div class="payment-dashboard-heading">
+
+        <div>
+            <h2>Tình hình thanh toán</h2>
+
+            <p>
+                Giao dịch được cập nhật trực tiếp từ API BeautyShop.
+            </p>
+        </div>
+
+        <a
+            href="payments.html"
+            class="payment-dashboard-link">
+
+            Quản lý thanh toán →
+
+        </a>
+
+    </div>
+
+    <!-- THỐNG KÊ THANH TOÁN -->
+    <div class="payment-dashboard-metrics">
+
+        <article class="payment-dashboard-metric">
+            <span>Giao dịch đã thanh toán</span>
+            <strong id="dashboardPaidPayments">0</strong>
+        </article>
+
+        <article class="payment-dashboard-metric">
+            <span>Giao dịch đang chờ</span>
+            <strong id="dashboardPendingPayments">0</strong>
+        </article>
+
+        <article class="payment-dashboard-metric">
+            <span>Chuyển khoản chờ đối soát</span>
+            <strong id="dashboardPendingTransfers">0</strong>
+        </article>
+
+        <article class="payment-dashboard-metric revenue">
+            <span>Tổng doanh thu đã thu</span>
+            <strong id="dashboardPaymentTotalRevenue">0 ₫</strong>
+        </article>
+
+    </div>
+
+    <!-- GIAO DỊCH GẦN ĐÂY -->
+    <article class="payment-dashboard-card">
+
+        <h3>Giao dịch gần đây</h3>
+
+        <div class="payment-dashboard-table-wrap">
+
+            <table class="payment-dashboard-table">
+
+                <thead>
+                    <tr>
+                        <th>Mã hóa đơn</th>
+                        <th>Khách hàng</th>
+                        <th>Phương thức</th>
+                        <th>Số tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dashboardPaymentTable">
+
+                    <tr>
+                        <td
+                            colspan="5"
+                            class="dashboard-payment-empty">
+
+                            Đang tải giao dịch...
+
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p
+            id="dashboardPaymentMessage"
+            role="status">
+        </p>
+
+    </article>
+
+</section>

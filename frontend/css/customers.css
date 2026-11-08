@@ -1,0 +1,1417 @@
+/* =========================================
+   CUSTOMER PAGE
+========================================= */
+
+.customer-intro-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.customer-intro-actions button {
+    white-space: nowrap;
+}
+
+.customer-intro-actions button[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.backup-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 17px;
+    border: 1px solid #d9c9f5;
+    border-radius: 10px;
+    background: #f4edff;
+    color: #7545b5;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.backup-button:hover {
+    background: #7545b5;
+    border-color: #7545b5;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(117, 69, 181, 0.2);
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid #e5e0ed;
+    border-radius: 10px;
+    background: #fff;
+    color: #5f5870;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    background: #f7f3fc;
+    border-color: #cbb6ed;
+    color: #7545b5;
+}
+
+
+/* =========================================
+   CUSTOMER STATISTICS
+========================================= */
+
+.customer-statistics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 22px 0;
+}
+
+.customer-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 125px;
+    padding: 22px;
+    border: 1px solid #eee9f4;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(45, 30, 70, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.customer-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(45, 30, 70, 0.08);
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.stat-icon-purple {
+    background: #f0e8ff;
+    color: #8052c5;
+}
+
+.stat-icon-orange {
+    background: #fff0e3;
+    color: #e58b3e;
+}
+
+.stat-icon-gold {
+    background: #fff6d9;
+    color: #c69a27;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 5px;
+}
+
+.stat-content > span {
+    color: #827b8d;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.stat-content > strong {
+    color: #30283c;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.stat-content > small {
+    color: #a29baa;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CUSTOMER FORM
+========================================= */
+
+.customer-form-card {
+    margin-bottom: 22px;
+    padding: 24px;
+    border: 1px solid #eee8f5;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(45, 30, 70, 0.04);
+    animation: customerFormEnter 0.32s ease both;
+}
+
+.customer-form-card[hidden] {
+    display: none !important;
+}
+
+.form-close-button {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e7e1ed;
+    border-radius: 9px;
+    background: #fff;
+    color: #655b70;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease,
+        border-color 0.2s ease, transform 0.2s ease;
+}
+
+.form-close-button:hover {
+    transform: rotate(90deg);
+    border-color: #e7b5ca;
+    background: #fff3f7;
+    color: #a63e6e;
+}
+
+.customer-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #f0edf3;
+}
+
+.customer-form-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    min-height: 42px;
+    padding: 0 17px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.2s ease, border-color 0.2s ease;
+}
+
+.customer-form-actions .btn-cancel {
+    border-color: #e5e0ed;
+    background: #fff;
+    color: #5f5870;
+}
+
+.customer-form-actions .btn-cancel:hover {
+    transform: translateY(-2px);
+    border-color: #cbb6ed;
+    background: #f7f3fc;
+    box-shadow: 0 5px 12px rgba(95, 88, 112, 0.1);
+}
+
+.customer-form-actions .btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #6d42c5);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(109, 66, 197, 0.18);
+}
+
+.customer-form-actions .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(109, 66, 197, 0.28);
+}
+
+.customer-form-actions .btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+.customer-form-actions .btn:focus-visible,
+.form-close-button:focus-visible {
+    outline: 3px solid rgba(139, 92, 246, 0.28);
+    outline-offset: 2px;
+}
+
+.customer-form-actions .btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+.customer-form-card:not([hidden]) .customer-form-grid > .form-group {
+    animation: customerFormFieldEnter 0.35s ease both;
+}
+
+.customer-form-card:not([hidden]) .customer-form-grid > .form-group:nth-child(2) {
+    animation-delay: 0.04s;
+}
+
+.customer-form-card:not([hidden]) .customer-form-grid > .form-group:nth-child(3) {
+    animation-delay: 0.08s;
+}
+
+.customer-form-card:not([hidden]) .customer-form-grid > .form-group:nth-child(4) {
+    animation-delay: 0.12s;
+}
+
+.customer-membership-hint {
+    display: block;
+    margin-top: 6px;
+    color: #777080;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+@keyframes customerFormEnter {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes customerFormFieldEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .customer-form-card {
+        animation: none;
+    }
+
+    .customer-form-card:not([hidden]) .customer-form-grid > .form-group {
+        animation: none;
+    }
+}
+
+.card-heading {
+    margin-bottom: 22px;
+}
+
+.card-heading h2 {
+    margin: 0 0 7px;
+    color: #30283c;
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.card-heading p {
+    margin: 0;
+    color: #938b9d;
+    font-size: 13px;
+}
+
+.customer-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.customer-form-grid > .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    color: #51495e;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.customer-form-grid > .form-group input,
+.customer-form-grid > .form-group select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+    border: 1px solid #e7e1ed;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: #383044;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.customer-form-grid > .form-group input:hover,
+.customer-form-grid > .form-group select:hover {
+    border-color: #b7a0da;
+}
+
+.customer-form-grid > .form-group input:focus,
+.customer-form-grid > .form-group select:focus {
+    border-color: #9670d0;
+    box-shadow: 0 0 0 4px rgba(150, 112, 208, 0.16);
+}
+
+.customer-form-grid > .form-group input::placeholder {
+    color: #b4aebc;
+    font-weight: 400;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #f0edf3;
+}
+
+
+/* =========================================
+   CUSTOMER LIST
+========================================= */
+
+.customer-list-card {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid #eee9f4;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(45, 30, 70, 0.04);
+}
+
+.customer-list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.customer-list-heading h2 {
+    margin: 0 0 7px;
+    color: #30283c;
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.customer-list-heading p {
+    margin: 0;
+    color: #938b9d;
+    font-size: 12px;
+}
+
+.customer-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.customer-search {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 180px;
+    height: 43px;
+    padding: 0 13px;
+    gap: 9px;
+    border: 1px solid #e9e3ef;
+    border-radius: 9px;
+    background: #fff;
+}
+
+.customer-search span {
+    color: #9b91a8;
+    font-size: 21px;
+}
+
+.customer-search input {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #393143;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.customer-search input::placeholder {
+    color: #aaa3b1;
+}
+
+.customer-filter-bar > select {
+    width: 220px;
+    height: 43px;
+    padding: 0 12px;
+    border: 1px solid #e9e3ef;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: #62596d;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   CUSTOMER MESSAGE
+========================================= */
+
+.customer-message {
+    margin-bottom: 16px;
+    padding: 12px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.customer-message[hidden] {
+    display: none !important;
+}
+
+.customer-message.success {
+    border: 1px solid #bfe8d0;
+    background: #edfff4;
+    color: #23834e;
+}
+
+.customer-message.error {
+    border: 1px solid #f2c6c6;
+    background: #fff1f1;
+    color: #c23e3e;
+}
+
+.customer-message.info {
+    border: 1px solid #c9dafa;
+    background: #f0f6ff;
+    color: #3568a9;
+}
+
+
+/* =========================================
+   CUSTOMER TABLE
+========================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.customer-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.customer-table thead th {
+    padding: 15px 13px;
+    border-bottom: 1px solid #eee9f3;
+    background: #faf8fc;
+    color: #82798f;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.customer-table thead th:first-child {
+    border-radius: 9px 0 0 0;
+}
+
+.customer-table thead th:last-child {
+    border-radius: 0 9px 0 0;
+}
+
+.customer-table tbody td {
+    padding: 15px 13px;
+    border-bottom: 1px solid #f1edf4;
+    color: #51495d;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.customer-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.customer-table tbody tr:hover {
+    background: #fcfaff;
+}
+
+.customer-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.customer-table .table-loading {
+    padding: 35px 15px;
+    color: #958c9e;
+    text-align: center;
+}
+
+
+/* =========================================
+   MEMBERSHIP BADGES
+========================================= */
+
+.membership-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 78px;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.membership-standard {
+    background: #f0edf4;
+    color: #71677e;
+}
+
+.membership-silver {
+    background: #e9edf3;
+    color: #5e6c7d;
+}
+
+.membership-gold {
+    background: #fff3d4;
+    color: #a87913;
+}
+
+.membership-platinum {
+    background: #eee6ff;
+    color: #7950b6;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.customer-action-group {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.customer-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 32px;
+    padding: 0 9px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.customer-edit-button {
+    border-color: #d9e6ff;
+    background: #edf4ff;
+    color: #3974c6;
+}
+
+.customer-edit-button:hover {
+    border-color: #3974c6;
+    background: #3974c6;
+    color: #fff;
+}
+
+.customer-delete-button {
+    border-color: #f5d7d7;
+    background: #fff0f0;
+    color: #d34b4b;
+}
+
+.customer-delete-button:hover {
+    border-color: #d34b4b;
+    background: #d34b4b;
+    color: #fff;
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.customer-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 17px;
+    border-top: 1px solid #f0edf3;
+}
+
+.pagination-info {
+    color: #938b9d;
+    font-size: 11px;
+}
+
+.pagination-info strong {
+    color: #51465f;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.pagination-controls label {
+    color: #847b8e;
+    font-size: 11px;
+}
+
+.pagination-controls select {
+    height: 33px;
+    padding: 0 8px;
+    border: 1px solid #e9e3ef;
+    border-radius: 7px;
+    outline: none;
+    background: #fff;
+    color: #655b70;
+    font-size: 11px;
+}
+
+.pagination-controls > button {
+    min-width: 58px;
+    height: 33px;
+    padding: 0 10px;
+    border: 1px solid #e7e0ed;
+    border-radius: 7px;
+    background: #fff;
+    color: #6d6279;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-controls > button:hover:not(:disabled) {
+    border-color: #8052c5;
+    background: #8052c5;
+    color: #fff;
+}
+
+.pagination-controls > button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-numbers button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #e9e3ef;
+    border-radius: 7px;
+    background: #fff;
+    color: #756b82;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.pagination-numbers button.active {
+    border-color: #8052c5;
+    background: #8052c5;
+    color: #fff;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .customer-statistics {
+        gap: 12px;
+    }
+
+    .customer-stat-card {
+        padding: 17px;
+    }
+
+    .customer-stat-card .stat-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .customer-statistics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .customer-stat-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .customer-intro-actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .customer-statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-stat-card:last-child {
+        grid-column: auto;
+    }
+
+    .customer-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-list-card {
+        padding: 15px;
+    }
+
+    .customer-list-heading {
+        align-items: flex-start;
+    }
+
+    .customer-filter-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .customer-filter-bar > select {
+        width: 100%;
+    }
+
+    .customer-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .pagination-controls {
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .customer-intro-actions button {
+        flex: 1 1 100%;
+    }
+
+    .customer-stat-card {
+        min-height: 105px;
+    }
+
+    .pagination-controls {
+        gap: 5px;
+    }
+
+    .pagination-controls label {
+        width: 100%;
+    }
+
+}
+
+/* ==========================================
+   CUSTOMER PAGE - BEAUTYSHOP
+========================================== */
+
+.customer-page-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.customer-page-intro h2 {
+    margin-bottom: 7px;
+}
+
+.customer-page-intro p {
+    margin: 0;
+}
+
+/* ==========================================
+   INTRO ACTION BUTTONS
+========================================== */
+
+.intro-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.intro-actions .btn {
+    min-height: 44px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* BACKUP */
+
+.intro-actions .btn-backup {
+    color: #6941c6;
+    background: #f1ebff;
+    border: 1px solid #dfd1ff;
+}
+
+.intro-actions .btn-backup:hover {
+    color: #fff;
+    background: #7650d8;
+    border-color: #7650d8;
+    box-shadow: 0 5px 14px rgba(118, 80, 216, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ADD */
+
+.intro-actions .btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #8b5cf6, #6d42c5);
+    border: 1px solid transparent;
+    box-shadow: 0 4px 10px rgba(109, 66, 197, 0.18);
+}
+
+.intro-actions .btn-primary:hover {
+    box-shadow: 0 7px 18px rgba(109, 66, 197, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   CUSTOMER EDIT / DELETE BUTTONS
+========================================== */
+
+.customer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.customer-action-btn {
+    min-width: 72px;
+    height: 34px;
+    padding: 0 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* EDIT */
+
+.customer-action-btn.btn-edit {
+    color: #2563eb;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+.customer-action-btn.btn-edit:hover {
+    color: #fff;
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transform: translateY(-2px);
+}
+
+/* DELETE */
+
+.customer-action-btn.btn-delete {
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+.customer-action-btn.btn-delete:hover {
+    color: #fff;
+    background: #dc2626;
+    border-color: #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+    transform: translateY(-2px);
+}
+
+/* CLICK EFFECT */
+
+.customer-action-btn:active,
+.intro-actions .btn:active {
+    transform: scale(0.95);
+}
+
+/* KEYBOARD FOCUS */
+
+.customer-action-btn:focus-visible,
+.intro-actions .btn:focus-visible {
+    outline: 3px solid rgba(139, 92, 246, 0.3);
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+    .customer-page-intro {
+        align-items: flex-start;
+    }
+
+    .intro-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 550px) {
+    .intro-actions {
+        gap: 8px;
+    }
+
+    .intro-actions .btn {
+        flex: 1;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .customer-actions {
+        gap: 5px;
+    }
+
+    .customer-action-btn {
+        min-width: 62px;
+        padding: 0 7px;
+        font-size: 11px;
+    }
+}
+/* ==========================================
+   BEAUTYSHOP - SEARCH & REFRESH DESIGN
+========================================== */
+
+/* Ô tìm kiếm */
+.filter-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 46px;
+    padding: 0 15px;
+
+    background: linear-gradient(135deg, #faf7ff, #f5f3ff);
+    border: 1px solid #e9ddff;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.04);
+
+    transition: all 0.3s ease;
+}
+
+/* Icon tìm kiếm */
+.filter-search > span {
+    color: #8b5cf6;
+    font-size: 21px;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+/* Input */
+.filter-search input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #334155;
+    font-size: 14px;
+}
+
+.filter-search input::placeholder {
+    color: #a78bfa;
+    transition: color 0.25s ease;
+}
+
+/* Hover */
+.filter-search:hover {
+    border-color: #c4b5fd;
+    background: #f5f0ff;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.09);
+    transform: translateY(-1px);
+}
+
+/* Focus */
+.filter-search:focus-within {
+    background: #ffffff;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+}
+
+.filter-search:focus-within > span {
+    color: #7c3aed;
+    transform: scale(1.12);
+}
+
+.filter-search:focus-within input::placeholder {
+    color: #c4b5fd;
+}
+
+
+/* ==========================================
+   NÚT LÀM MỚI
+========================================== */
+
+.btn-refresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 44px;
+    padding: 0 19px;
+
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: #ffffff;
+
+    border: none;
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.18);
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.btn-refresh:hover {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #ffffff;
+
+    box-shadow: 0 7px 17px rgba(99, 102, 241, 0.3);
+
+    transform: translateY(-2px);
+}
+
+/* Active */
+.btn-refresh:active {
+    transform: translateY(0) scale(0.96);
+    box-shadow: 0 2px 5px rgba(99, 102, 241, 0.2);
+}
+
+/* Icon */
+.btn-refresh {
+    position: relative;
+}
+
+.btn-refresh:hover {
+    filter: brightness(1.04);
+}
+
+/* Loading */
+.btn-refresh:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-search {
+        width: 100%;
+    }
+
+    .btn-refresh {
+        width: 100%;
+    }
+}
+/* ==========================================
+   CĂN CHỈNH CỘT THAO TÁC
+========================================== */
+
+.customer-table th:last-child,
+.customer-table td:last-child {
+    width: 170px;
+    min-width: 170px;
+    text-align: center !important;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.customer-table td:last-child {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.customer-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Nút sửa và xóa */
+.customer-action-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    width: 68px;
+    height: 34px;
+    padding: 0;
+
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.customer-action-btn.btn-edit {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.customer-action-btn.btn-edit:hover {
+    background: #2563eb;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.customer-action-btn.btn-delete {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.customer-action-btn.btn-delete:hover {
+    background: #dc2626;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+}
+
+.customer-action-btn:active {
+    transform: scale(0.95);
+}
+/* ==========================================
+   BEAUTYSHOP - MEMBERSHIP BADGES
+========================================== */
+
+.membership-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-width: 88px;
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* ==========================================
+   1. STANDARD - XÁM
+========================================== */
+
+.membership-badge.standard {
+    color: #475569;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 5px rgba(71, 85, 105, 0.08);
+}
+
+.membership-badge.standard::before {
+    content: "♙";
+    font-size: 13px;
+}
+
+.membership-badge.standard:hover {
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+    box-shadow: 0 4px 10px rgba(71, 85, 105, 0.18);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   2. SILVER - BẠC
+========================================== */
+
+.membership-badge.silver {
+    color: #475569;
+    background: linear-gradient(135deg, #f8fafc, #cbd5e1);
+    border: 1px solid #94a3b8;
+    box-shadow: 0 2px 6px rgba(100, 116, 139, 0.12);
+}
+
+.membership-badge.silver::before {
+    content: "✧";
+    font-size: 15px;
+}
+
+.membership-badge.silver:hover {
+    background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   3. GOLD - VÀNG
+========================================== */
+
+.membership-badge.gold {
+    color: #92400e;
+    background: linear-gradient(135deg, #fef3c7, #fcd34d);
+    border: 1px solid #fbbf24;
+    box-shadow: 0 2px 7px rgba(245, 158, 11, 0.15);
+}
+
+.membership-badge.gold::before {
+    content: "♛";
+    font-size: 14px;
+}
+
+.membership-badge.gold:hover {
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    box-shadow: 0 5px 14px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   4. PLATINUM - KIM CƯƠNG
+========================================== */
+
+.membership-badge.platinum {
+    color: #6d28d9;
+    background: linear-gradient(135deg, #f3e8ff, #ddd6fe);
+    border: 1px solid #c4b5fd;
+    box-shadow: 0 2px 7px rgba(139, 92, 246, 0.15);
+}
+
+.membership-badge.platinum::before {
+    content: "✦";
+    font-size: 15px;
+}
+
+.membership-badge.platinum:hover {
+    background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   HIỆU ỨNG CHUNG
+========================================== */
+
+.membership-badge:active {
+    transform: scale(0.96);
+}
+
+/* Hiển thị đẹp trên điện thoại */
+@media (max-width: 768px) {
+    .membership-badge {
+        min-width: 78px;
+        padding: 5px 9px;
+        font-size: 10px;
+    }
+}

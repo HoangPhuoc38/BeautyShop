@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.login-logo {
+    text-align: center;
+    color: #d63384;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.login-card h1 {
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #d63384;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+#loginButton {
+    width: 100%;
+    padding: 14px;
+    background: #d63384;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#loginButton:hover {
+    background: #bd286f;
+}
+
+#loginButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#loginMessage {
+    min-height: 20px;
+    font-size: 14px;
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.login-footer {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+#changePasswordMessage {
+    margin: 12px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+#changePasswordMessage.error {
+    color: #b42323;
+}
+
+#changePasswordMessage.success {
+    color: #237443;
+}
+
+#changePasswordButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

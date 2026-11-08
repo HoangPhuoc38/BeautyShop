@@ -1,0 +1,190 @@
+/* =====================================================
+   DASHBOARD - TÌNH HÌNH THANH TOÁN
+===================================================== */
+
+.payment-dashboard-section {
+    margin-top: 24px;
+}
+.payment-dashboard-section[hidden] {
+    display: none !important;
+}
+
+/* Tiêu đề */
+
+.payment-dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.payment-dashboard-heading h2 {
+    margin: 0 0 5px;
+    color: #34283d;
+    font-size: 21px;
+}
+
+.payment-dashboard-heading p {
+    margin: 0;
+    color: #817788;
+    font-size: 13px;
+}
+
+/* Liên kết */
+
+.payment-dashboard-link {
+    color: #99416e;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.payment-dashboard-link:hover {
+    text-decoration: underline;
+}
+
+/* Các thẻ thống kê */
+
+.payment-dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.payment-dashboard-metric {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #eee8f1;
+    border-radius: 13px;
+    background: #fff;
+    box-shadow: 0 4px 18px #30204008;
+}
+
+.payment-dashboard-metric span {
+    display: block;
+    color: #817788;
+    font-size: 13px;
+}
+
+.payment-dashboard-metric strong {
+    display: block;
+    margin-top: 10px;
+    color: #34283d;
+    font-size: clamp(20px, 2vw, 27px);
+    overflow-wrap: anywhere;
+}
+
+.payment-dashboard-metric.revenue strong {
+    color: #a33d70;
+}
+
+/* Khung bảng */
+
+.payment-dashboard-card {
+    padding: 20px;
+    border: 1px solid #eee8f1;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 4px 18px #30204008;
+}
+
+.payment-dashboard-card h3 {
+    margin: 0 0 14px;
+    font-size: 17px;
+}
+
+.payment-dashboard-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Bảng giao dịch */
+
+.payment-dashboard-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+}
+
+.payment-dashboard-table th,
+.payment-dashboard-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eeeaf2;
+    text-align: left;
+    font-size: 13px;
+}
+
+.payment-dashboard-table th {
+    background: #faf8fc;
+    color: #6c6275;
+}
+
+/* Trạng thái */
+
+.dashboard-payment-badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #f0edf4;
+    color: #63596c;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.dashboard-payment-badge.paid {
+    background: #e1f5e8;
+    color: #217444;
+}
+
+.dashboard-payment-badge.pending {
+    background: #fff1d8;
+    color: #875b12;
+}
+
+.dashboard-payment-badge.cancelled {
+    background: #fce6e8;
+    color: #a42d3a;
+}
+
+/* Trạng thái rỗng */
+
+.dashboard-payment-empty {
+    padding: 22px !important;
+    color: #817788;
+    text-align: center !important;
+}
+
+#dashboardPaymentMessage {
+    margin: 10px 0 0;
+    color: #a42d3a;
+    font-size: 13px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+
+    .payment-dashboard-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+
+    .payment-dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .payment-dashboard-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-dashboard-card {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,281 @@
+
+/* =========================================
+   BEAUTYSHOP - PROFILE COMPONENT
+========================================= */
+
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease;
+}
+
+.profile-trigger:hover,
+.profile-trigger[aria-expanded="true"] {
+    background: #fff0f5;
+    border-color: #f8d5e2;
+}
+
+.profile-trigger:focus-visible {
+    outline: 3px solid #f2a8c4;
+    outline-offset: 3px;
+}
+
+.profile-avatar {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffeaf1;
+    color: #d94b78;
+    font-size: 15px;
+    font-weight: 700;
+    border: 1px solid #f8d5e2;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-info strong {
+    color: #303044;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.profile-info span {
+    color: #9292a5;
+    font-size: 11px;
+}
+
+.profile-chevron {
+    color: #999;
+    font-size: 12px;
+    transition: transform 0.25s ease;
+}
+
+.profile-trigger[aria-expanded="true"] .profile-chevron {
+    transform: rotate(180deg);
+}
+
+/* DROPDOWN */
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1000;
+    width: 260px;
+    padding: 9px;
+    background: #fff;
+    border: 1px solid #f0e6eb;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(50, 30, 45, 0.15);
+    animation: profileDropdownIn 0.2s ease;
+}
+
+.profile-dropdown[hidden] {
+    display: none;
+}
+
+@keyframes profileDropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-dropdown-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.profile-dropdown-heading strong {
+    display: block;
+    color: #303044;
+    font-size: 13px;
+}
+
+.profile-dropdown-heading span {
+    display: block;
+    margin-top: 4px;
+    color: #999;
+    font-size: 11px;
+}
+
+.profile-dropdown-divider {
+    height: 1px;
+    margin: 7px 0;
+    background: #f0e8ed;
+}
+
+.profile-menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #555568;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-menu-item:hover {
+    background: #fff0f5;
+    color: #d94b78;
+    transform: translateX(3px);
+}
+
+.profile-menu-item.danger {
+    color: #e05265;
+}
+
+.profile-menu-item.danger:hover {
+    background: #fff0f0;
+    color: #c92d45;
+}
+
+.profile-menu-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* ACCOUNT DIALOG */
+
+.profile-dialog {
+    width: min(420px, calc(100% - 30px));
+    padding: 0;
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.profile-dialog::backdrop {
+    background: rgba(35, 25, 35, 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.profile-dialog-content {
+    padding: 25px;
+}
+
+.profile-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.profile-dialog-header h2 {
+    margin: 0;
+    color: #303044;
+    font-size: 19px;
+}
+
+.profile-dialog-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: #f7f2f5;
+    color: #777;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile-dialog-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.profile-dialog-user .profile-avatar {
+    width: 76px;
+    height: 76px;
+    font-size: 23px;
+}
+
+.profile-dialog-user strong {
+    color: #303044;
+    font-size: 16px;
+}
+
+.profile-dialog-user span {
+    color: #999;
+    font-size: 12px;
+}
+
+.profile-detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid #f1e9ed;
+    font-size: 13px;
+}
+
+.profile-detail span {
+    color: #888;
+}
+
+.profile-detail strong {
+    color: #454555;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .profile-info,
+    .profile-chevron {
+        display: none;
+    }
+
+    .profile-trigger {
+        padding: 4px;
+    }
+
+    .profile-dropdown {
+        right: 0;
+        width: 250px;
+    }
+}

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BeautyShop - Tạo và quản lý đơn hàng">
+    <title>Đơn hàng | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span><span>Sản phẩm</span>
+            </a>
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span><span>Khách hàng</span>
+            </a>
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span><span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+            <a href="services.html" class="nav-item">
+                <span class="nav-icon">✧</span><span>Dịch vụ làm đẹp</span>
+            </a>
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span><span>Lịch hẹn</span>
+            </a>
+            <a href="orders.html" class="nav-item active">
+                <span class="nav-icon">▤</span><span>Đơn hàng</span>
+            </a>
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span><span>Thanh toán</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+            <button class="logout-button" id="logoutButton" type="button">
+                ↪ Đăng xuất
+            </button>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle" type="button"
+                        aria-label="Mở menu">☰</button>
+                <div>
+                    <h1>Quản lý đơn hàng</h1>
+                    <p>Tạo hóa đơn và quản lý đơn hàng của cửa hàng</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="profile-container">
+                    <button type="button" class="profile-trigger" id="profileTrigger"
+                            aria-expanded="false" aria-controls="profileDropdown">
+                        <div class="profile-avatar" id="profileAvatar">BS</div>
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+                        <span class="profile-chevron">⌄</span>
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" hidden>
+                        <div class="profile-dropdown-heading">
+                            <div class="profile-avatar" id="dropdownAvatar">BS</div>
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+                        </div>
+                        <div class="profile-dropdown-divider"></div>
+                        <button type="button" class="profile-menu-item" id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+                        <button type="button" class="profile-menu-item" id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+                        <div class="profile-dropdown-divider"></div>
+                        <button type="button" class="profile-menu-item danger"
+                                id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="orders-page">
+            <div class="orders-heading">
+                <div>
+                    <h2>Đơn hàng</h2>
+                    <p>Tạo đơn hàng từ sản phẩm và dịch vụ của BeautyShop.</p>
+                </div>
+                <button type="button" class="btn btn-primary" id="newOrderButton">
+                    <span>＋</span> Tạo đơn hàng
+                </button>
+            </div>
+
+            <div class="order-stat-grid">
+                <article class="order-stat-card">
+                    <div class="order-stat-icon purple">▤</div>
+                    <div>
+                        <span>Tổng hóa đơn</span>
+                        <strong id="totalOrders">0</strong>
+                    </div>
+                </article>
+                <article class="order-stat-card">
+                    <div class="order-stat-icon green">✓</div>
+                    <div>
+                        <span>Đã thanh toán</span>
+                        <strong id="paidOrders">0</strong>
+                    </div>
+                </article>
+                <article class="order-stat-card">
+                    <div class="order-stat-icon orange">◷</div>
+                    <div>
+                        <span>Chờ thanh toán</span>
+                        <strong id="pendingOrders">0</strong>
+                    </div>
+                </article>
+                <article class="order-stat-card">
+                    <div class="order-stat-icon pink">₫</div>
+                    <div>
+                        <span>Doanh thu đã thu</span>
+                        <strong id="orderRevenue">0đ</strong>
+                    </div>
+                </article>
+            </div>
+
+            <section class="order-create-card" id="createOrderSection">
+                <div class="section-heading">
+                    <div>
+                        <h3><span class="heading-icon">＋</span> Tạo đơn hàng mới</h3>
+                        <p>Thông tin khách hàng, hàng hóa và thanh toán.</p>
+                    </div>
+                    <button type="button" class="btn btn-light" id="resetOrderButton">
+                        Làm mới
+                    </button>
+                </div>
+
+                <div class="order-form-grid">
+                    <div class="order-main-column">
+                        <section class="order-panel">
+                            <div class="panel-title">
+                                <span class="step-number">1</span>
+                                <div>
+                                    <h4>Thông tin khách hàng</h4>
+                                    <p>Chọn khách hàng cho hóa đơn</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerSelect">Khách hàng <span>*</span></label>
+                                <select id="customerSelect">
+                                    <option value="">Đang tải danh sách khách hàng...</option>
+                                </select>
+                                <small id="customerInfo" class="field-hint">
+                                    Chọn khách hàng để tiếp tục.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="appointmentId">Mã lịch hẹn (không bắt buộc)</label>
+                                <input type="text" id="appointmentId"
+                                       placeholder="Ví dụ: APT001">
+                            </div>
+                        </section>
+
+                        <section class="order-panel">
+                            <div class="panel-title">
+                                <span class="step-number">2</span>
+                                <div>
+                                    <h4>Thêm sản phẩm và dịch vụ</h4>
+                                    <p>Chọn danh mục, tìm kiếm và thêm vào đơn hàng</p>
+                                </div>
+                            </div>
+
+                            <div class="catalog-toolbar">
+                                <div class="catalog-tabs">
+                                    <button type="button" class="catalog-tab active"
+                                            data-catalog="service">Dịch vụ</button>
+                                    <button type="button" class="catalog-tab"
+                                            data-catalog="product">Sản phẩm</button>
+                                </div>
+                                <input type="search" id="catalogSearch"
+                                       placeholder="Tìm tên sản phẩm hoặc dịch vụ...">
+                            </div>
+
+                            <div class="catalog-message" id="catalogMessage">
+                                Đang tải danh sách...
+                            </div>
+                            <div class="catalog-grid" id="catalogGrid"></div>
+                        </section>
+
+                        <section class="order-panel">
+                            <div class="panel-title">
+                                <span class="step-number">3</span>
+                                <div>
+                                    <h4>Danh sách hàng hóa</h4>
+                                    <p>Điều chỉnh số lượng trước khi tạo hóa đơn</p>
+                                </div>
+                            </div>
+
+                            <div class="cart-table-wrap">
+                                <table class="cart-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Hạng mục</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="cartTableBody">
+                                    <tr>
+                                        <td colspan="5" class="empty-cart">
+                                            Chưa có sản phẩm hoặc dịch vụ nào.
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="order-summary-column">
+                        <section class="order-panel summary-panel">
+                            <div class="panel-title">
+                                <span class="step-number">4</span>
+                                <div>
+                                    <h4>Thanh toán</h4>
+                                    <p>Kiểm tra tổng tiền đơn hàng</p>
+                                </div>
+                            </div>
+
+                            <div class="summary-line">
+                                <span>Tạm tính</span>
+                                <strong id="subtotalAmount">0đ</strong>
+                            </div>
+
+                            <div class="discount-control">
+                                <label for="discountType">Giảm giá</label>
+                                <div class="discount-inputs">
+                                    <select id="discountType">
+                                        <option value="fixed">Số tiền</option>
+                                        <option value="percent">Phần trăm (%)</option>
+                                    </select>
+                                    <input type="number" id="discountValue"
+                                           min="0" step="1" value="0"
+                                           placeholder="0">
+                                </div>
+                            </div>
+
+                            <div class="summary-line discount-line">
+                                <span>Giá trị giảm</span>
+                                <strong id="discountAmount">0đ</strong>
+                            </div>
+
+                            <div class="summary-total">
+                                <span>Tổng thanh toán</span>
+                                <strong id="totalAmount">0đ</strong>
+                            </div>
+
+                            <div class="form-group payment-method-group">
+                                <label>Phương thức thanh toán <span>*</span></label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentMethod"
+                                           value="cash" checked>
+                                    <span class="payment-choice-icon">₫</span>
+                                    <span>
+                                        <strong>Tiền mặt</strong>
+                                        <small>Khách thanh toán trực tiếp</small>
+                                    </span>
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentMethod"
+                                           value="bank_transfer">
+                                    <span class="payment-choice-icon">▦</span>
+                                    <span>
+                                        <strong>Chuyển khoản ngân hàng</strong>
+                                        <small>Hiển thị QR sau khi tạo hóa đơn</small>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="orderNote">Ghi chú</label>
+                                <textarea id="orderNote" rows="3"
+                                          placeholder="Ghi chú cho hóa đơn (nếu có)"></textarea>
+                            </div>
+
+                            <div class="order-warning" id="orderWarning">
+                                Vui lòng chọn khách hàng và thêm ít nhất một hạng mục.
+                            </div>
+
+                            <button type="button" class="btn btn-primary btn-create-order"
+                                    id="createOrderButton">
+                                Tạo hóa đơn
+                            </button>
+                        </section>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="order-history-card">
+                <div class="section-heading">
+                    <div>
+                        <h3>Danh sách hóa đơn</h3>
+                        <p>Các hóa đơn đã được tạo trong BeautyShop.</p>
+                    </div>
+                    <button type="button" class="btn btn-light" id="refreshOrdersButton">
+                        ↻ Làm mới
+                    </button>
+                </div>
+
+                <div class="order-filter-bar">
+                    <input type="search" id="orderSearch"
+                           placeholder="Tìm mã hóa đơn, khách hàng...">
+                    <select id="orderStatusFilter">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="paid">Đã thanh toán</option>
+                        <option value="pending">Chờ thanh toán</option>
+                        <option value="cancelled">Đã hủy</option>
+                    </select>
+                    <select id="orderMethodFilter">
+                        <option value="">Tất cả phương thức</option>
+                        <option value="cash">Tiền mặt</option>
+                        <option value="bank_transfer">Chuyển khoản</option>
+                    </select>
+                </div>
+
+                <div class="order-table-wrap">
+                    <table class="order-table">
+                        <thead>
+                        <tr>
+                            <th>Mã hóa đơn</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày tạo</th>
+                            <th>Thanh toán</th>
+                            <th>Phương thức</th>
+                            <th>Tổng tiền</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        <tr>
+                            <td colspan="7" class="table-empty">Đang tải hóa đơn...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="order-pagination">
+                    <span id="orderPageInfo">Trang 1</span>
+                    <div>
+                        <button type="button" class="btn btn-light"
+                                id="orderPrevPage">Trước</button>
+                        <button type="button" class="btn btn-light"
+                                id="orderNextPage">Tiếp</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <footer class="dashboard-footer">
+            <span>© <span id="currentYear"></span> BeautyShop. All rights reserved.</span>
+            <span>Beauty Management System</span>
+        </footer>
+    </main>
+</div>
+
+<!-- Dialog kết quả tạo hóa đơn -->
+<div class="order-dialog-backdrop" id="orderResultDialog" hidden>
+    <section class="order-result-dialog" role="dialog"
+             aria-modal="true" aria-labelledby="resultDialogTitle">
+        <button type="button" class="dialog-close" id="closeOrderResult"
+                aria-label="Đóng">×</button>
+        <div id="orderResultContent"></div>
+    </section>
+</div>
+
+<!-- Dialog chi tiết hóa đơn -->
+<div class="order-dialog-backdrop" id="orderDetailDialog" hidden>
+    <section class="order-result-dialog order-detail-dialog" role="dialog"
+             aria-modal="true" aria-labelledby="detailDialogTitle">
+        <button type="button" class="dialog-close" id="closeOrderDetail"
+                aria-label="Đóng">×</button>
+        <div id="orderDetailContent"></div>
+    </section>
+</div>
+
+<!-- Profile dialog dùng chung -->
+<div class="profile-dialog" id="profileDialog" hidden>
+    <div class="profile-dialog-content">
+        <button type="button" class="profile-dialog-close" id="closeProfileDialog">×</button>
+        <div class="profile-dialog-heading">
+            <div class="profile-avatar large" id="dialogAvatar">BS</div>
+            <div>
+                <h3 id="dialogUserName">Thông tin tài khoản</h3>
+                <p id="dialogUserRole"></p>
+            </div>
+        </div>
+        <div class="profile-detail-row">
+            <span>Tên đăng nhập</span><strong id="dialogUsername">—</strong>
+        </div>
+        <div class="profile-detail-row">
+            <span>Mã nhân viên</span><strong id="dialogEmployeeId">—</strong>
+        </div>
+        <div class="profile-detail-row">
+            <span>Chi nhánh</span><strong id="dialogBranchId">—</strong>
+        </div>
+    </div>
+</div>
+
+<input type="file" id="profileAvatarInput"
+       accept="image/png,image/jpeg,image/webp" hidden>
+
+<script src="js/app.js" defer></script>
+<script src="js/profile.js" defer></script>
+<script src="js/orders.js" defer></script>
+</body>
+</html>

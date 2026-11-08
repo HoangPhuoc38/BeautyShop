@@ -1,0 +1,656 @@
+
+/* =====================================================
+   DASHBOARD - SEARCH, SUPPORT, NOTIFICATION, ACCOUNT
+===================================================== */
+
+/* Bắt buộc ẩn các thành phần có thuộc tính hidden */
+[hidden] {
+    display: none !important;
+}
+
+
+/* =====================================================
+   1. TÌM KIẾM
+===================================================== */
+
+.dashboard-search-container {
+    position: relative;
+    width: min(300px, 100%);
+    z-index: 20;
+}
+
+.dashboard-search-container .search-box {
+    width: 100%;
+}
+
+.dashboard-search-results {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    max-height: 360px;
+    overflow-y: auto;
+
+    padding: 8px;
+
+    border: 1px solid #eee5ef;
+    border-radius: 12px;
+
+    background: #fff;
+
+    box-shadow: 0 12px 35px #30204018;
+}
+
+.search-result-heading {
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #f0edf4;
+
+    color: #817788;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 12px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #372c40;
+
+    text-align: left;
+    font: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: background .2s ease;
+}
+
+.search-result-item:hover {
+    background: #fbf2f8;
+}
+
+.search-result-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    background: #f9e8f1;
+    color: #a64d79;
+
+    font-size: 16px;
+}
+
+.search-result-item > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.search-all-link {
+    display: block;
+
+    padding: 12px;
+
+    border-top: 1px solid #f0edf4;
+
+    color: #a64d79;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.search-all-link:hover {
+    background: #fbf2f8;
+}
+
+.search-empty {
+    padding: 16px;
+}
+
+.search-empty strong {
+    display: block;
+    color: #392d42;
+    font-size: 14px;
+}
+
+.search-empty p {
+    margin: 8px 0;
+    color: #817788;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.search-empty a {
+    color: #a64d79;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dashboard-search-highlight {
+    outline: 2px solid #b85d8b !important;
+    outline-offset: -2px;
+    background: #fff5fa !important;
+}
+
+
+/* =====================================================
+   2. THÔNG BÁO
+===================================================== */
+
+.dashboard-notification-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-notification-container .notification-button {
+    position: relative;
+}
+
+.notification-count {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+
+    min-width: 19px;
+    height: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    border: 2px solid #fff;
+    border-radius: 20px;
+
+    background: #d94d68;
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.notification-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+
+    z-index: 1001;
+
+    width: min(370px, calc(100vw - 30px));
+    max-height: 460px;
+
+    overflow-y: auto;
+
+    padding: 16px;
+
+    border: 1px solid #eee5ef;
+    border-radius: 14px;
+
+    background: #fff;
+
+    box-shadow: 0 14px 45px #30204020;
+}
+
+.notification-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 13px;
+
+    border-bottom: 1px solid #f0edf4;
+}
+
+.notification-panel-heading h3 {
+    margin: 0;
+
+    color: #392d42;
+
+    font-size: 17px;
+}
+
+.notification-panel-heading p {
+    margin: 5px 0 0;
+
+    color: #817788;
+
+    font-size: 12px;
+}
+
+.notification-panel-heading button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #f4f0f6;
+    color: #5c5065;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.notification-list {
+    padding-top: 8px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 5px;
+
+    border-bottom: 1px solid #f3eff5;
+
+    color: #352b3f;
+    text-decoration: none;
+
+    transition: background .2s ease;
+}
+
+.notification-item:hover {
+    background: #fcf7fa;
+}
+
+.notification-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 10px;
+
+    background: #f6e8f0;
+    color: #a64d79;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.notification-item-icon.warning {
+    background: #fff1d8;
+    color: #a36b18;
+}
+
+.notification-item-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.notification-item-content strong {
+    color: #392d42;
+    font-size: 12px;
+}
+
+.notification-item-content small {
+    color: #817788;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.notification-arrow {
+    flex-shrink: 0;
+    color: #a64d79;
+    font-weight: 700;
+}
+
+.notification-empty {
+    padding: 22px 10px;
+    text-align: center;
+}
+
+.notification-empty > span {
+    display: block;
+    margin-bottom: 10px;
+
+    color: #329b62;
+    font-size: 25px;
+}
+
+.notification-empty strong {
+    color: #392d42;
+    font-size: 13px;
+}
+
+.notification-empty p {
+    margin: 6px 0 0;
+    color: #817788;
+    font-size: 12px;
+}
+
+.notification-loading {
+    padding: 15px;
+    color: #817788;
+    font-size: 13px;
+    text-align: center;
+}
+
+.notification-error {
+    padding: 15px;
+    color: #a42d3a;
+    font-size: 12px;
+}
+
+.notification-error p {
+    overflow-wrap: anywhere;
+}
+
+.notification-error button {
+    padding: 8px 12px;
+
+    border: 0;
+    border-radius: 7px;
+
+    background: #f6e7ee;
+    color: #993d6d;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.notification-footer-link {
+    display: block;
+
+    margin-top: 10px;
+    padding: 12px 8px;
+
+    border-top: 1px solid #f0edf4;
+
+    color: #a64d79;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+.notification-footer-link:hover {
+    background: #fbf2f8;
+}
+
+
+/* =====================================================
+   3. HỖ TRỢ
+===================================================== */
+
+.dashboard-support-dialog {
+    width: min(600px, calc(100% - 24px));
+    max-height: 85vh;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    border: 0;
+    border-radius: 16px;
+
+    background: #fff;
+
+    box-shadow: 0 15px 70px #1d142b35;
+}
+
+.dashboard-support-dialog::backdrop {
+    background: #21162c80;
+}
+
+.support-dialog-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.support-dialog-heading h2 {
+    margin: 10px 0 6px;
+
+    color: #352a3f;
+    font-size: 23px;
+}
+
+.support-dialog-heading p {
+    margin: 0;
+
+    color: #817788;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.support-close-button {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #f1edf4;
+    color: #504458;
+
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.support-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.support-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+
+    padding: 14px;
+
+    border: 1px solid #eee8f1;
+    border-radius: 11px;
+
+    background: #fff;
+}
+
+.support-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: #f9e8f1;
+    color: #a64d79;
+
+    font-size: 18px;
+}
+
+.support-item h3 {
+    margin: 0 0 6px;
+
+    color: #392d42;
+    font-size: 14px;
+}
+
+.support-item p {
+    margin: 0;
+
+    color: #817788;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.support-item a {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    color: #a64d79;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.support-item a:hover {
+    text-decoration: underline;
+}
+
+.support-note {
+    margin: 18px 0 0;
+    padding: 12px;
+
+    border-radius: 9px;
+
+    background: #faf7fb;
+    color: #817788;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   4. TÀI KHOẢN
+===================================================== */
+
+.profile-info strong {
+    display: block;
+}
+
+.profile-info span {
+    display: block;
+}
+
+
+/* =====================================================
+   5. RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .dashboard-search-container {
+        width: 230px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-search-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dashboard-search-results {
+        max-height: 300px;
+    }
+
+    .notification-panel {
+        position: fixed;
+
+        top: 75px;
+        right: 12px;
+        left: 12px;
+
+        width: auto;
+        max-height: min(70vh, 460px);
+    }
+
+    .dashboard-support-dialog {
+        padding: 17px;
+    }
+
+    .support-dialog-heading h2 {
+        font-size: 20px;
+    }
+
+    .support-item {
+        padding: 11px;
+    }
+    /* =====================================================
+   HIỂN THỊ THÔNG TIN KHÁCH HÀNG VÀ DỊCH VỤ
+===================================================== */
+
+.dashboard-cell-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.dashboard-primary-text {
+    color: #392d42;
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-secondary-text {
+    display: block;
+    color: #918798;
+    font-size: 11px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-service-name {
+    color: #51445d;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-appointment-date {
+    color: #392d42;
+    font-size: 13px;
+    font-weight: 600;
+}
+}

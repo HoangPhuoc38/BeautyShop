@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quản lý dịch vụ | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/services.css">
+
+    <script src="js/app.js" defer></script>
+    <script src="js/profile.js" defer></script>
+    <script src="js/services.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✿</div>
+
+            <div class="brand-info">
+                <h2>BeautyShop</h2>
+                <span>Beauty Management</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TỔNG QUAN</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">♡</span>
+                <span>Sản phẩm</span>
+            </a>
+
+            <a href="customers.html" class="nav-item">
+                <span class="nav-icon">♙</span>
+                <span>Khách hàng</span>
+            </a>
+
+            <a href="employees.html" class="nav-item">
+                <span class="nav-icon">♧</span>
+                <span>Nhân viên</span>
+            </a>
+
+            <div class="sidebar-label">VẬN HÀNH</div>
+
+            <a href="services.html" class="nav-item active">
+                <span class="nav-icon">✧</span>
+                <span>Dịch vụ làm đẹp</span>
+            </a>
+
+            <a href="appointments.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Lịch hẹn</span>
+            </a>
+
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Đơn hàng</span>
+            </a>
+
+            <a href="payments.html" class="nav-item">
+                <span class="nav-icon">₫</span>
+                <span>Thanh toán</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+                <div class="help-icon">✿</div>
+                <h4>BeautyShop Support</h4>
+                <p>Quản lý cửa hàng dễ dàng hơn mỗi ngày.</p>
+            </div>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+                type="button">
+                ↪ Đăng xuất
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Mở menu">
+                    ☰
+                </button>
+
+                <div class="topbar-title">
+                    <h1>Dịch vụ làm đẹp</h1>
+                    <p>Quản lý các dịch vụ của cửa hàng</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="global-search">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="globalSearch"
+                        placeholder="Tìm kiếm...">
+                </div>
+
+                <!-- PROFILE -->
+                <div class="profile-container">
+
+                    <button
+                        type="button"
+                        class="profile-trigger"
+                        id="profileTrigger"
+                        aria-expanded="false"
+                        aria-controls="profileDropdown">
+
+                        <div class="profile-avatar" id="profileAvatar">
+                            BS
+                        </div>
+
+                        <div class="profile-info">
+                            <strong id="currentUserName">Đang tải...</strong>
+                            <span id="currentUserRole">...</span>
+                        </div>
+
+                        <span class="profile-chevron">⌄</span>
+
+                    </button>
+
+                    <div
+                        class="profile-dropdown"
+                        id="profileDropdown"
+                        hidden>
+
+                        <div class="profile-dropdown-heading">
+
+                            <div class="profile-avatar" id="dropdownAvatar">
+                                BS
+                            </div>
+
+                            <div>
+                                <strong id="dropdownUserName">Đang tải...</strong>
+                                <span id="dropdownUserRole">...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="viewProfileButton">
+                            <span class="profile-menu-icon">♙</span>
+                            Thông tin tài khoản
+                        </button>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="changeAvatarButton">
+                            <span class="profile-menu-icon">📷</span>
+                            Thay đổi ảnh đại diện
+                        </button>
+
+                        <div class="profile-dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            class="profile-menu-item danger"
+                            id="profileLogoutButton">
+                            <span class="profile-menu-icon">↪</span>
+                            Đăng xuất
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <input
+                    type="file"
+                    id="profileAvatarInput"
+                    accept="image/png,image/jpeg,image/webp"
+                    hidden>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-content service-page">
+
+            <!-- PAGE HEADING -->
+            <section class="section-heading service-heading">
+
+                <div>
+                    <h2>Danh sách dịch vụ</h2>
+                    <p>
+                        Quản lý thông tin, giá và thời lượng
+                        các dịch vụ làm đẹp.
+                    </p>
+                </div>
+
+                <div class="service-intro-actions">
+
+                    <button
+                        type="button"
+                        id="backupServicesButton"
+                        class="btn btn-backup"
+                        hidden>
+                        <span>⇩</span>
+                        Sao lưu dữ liệu
+                    </button>
+
+                    <button
+                        type="button"
+                        id="addButton"
+                        class="btn btn-primary"
+                        hidden>
+                        <span>＋</span>
+                        Thêm dịch vụ
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- MESSAGE -->
+            <p
+                id="message"
+                class="service-message"
+                role="status"
+                aria-live="polite">
+            </p>
+
+            <!-- STATISTICS -->
+            <section class="service-stats">
+
+                <article class="service-stat-card">
+                    <div class="service-stat-icon pink">✧</div>
+                    <div>
+                        <span>Tổng dịch vụ</span>
+                        <strong id="totalServices">0</strong>
+                    </div>
+                </article>
+
+                <article class="service-stat-card">
+                    <div class="service-stat-icon green">✓</div>
+                    <div>
+                        <span>Đang hoạt động</span>
+                        <strong id="activeServices">0</strong>
+                    </div>
+                </article>
+
+                <article class="service-stat-card">
+                    <div class="service-stat-icon orange">Ⅱ</div>
+                    <div>
+                        <span>Ngừng hoạt động</span>
+                        <strong id="inactiveServices">0</strong>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- FILTERS -->
+            <section class="service-panel service-filters">
+
+                <div class="service-search-box">
+                    <span>⌕</span>
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Tìm theo mã hoặc tên dịch vụ..."
+                        aria-label="Tìm kiếm dịch vụ">
+                </div>
+
+                <select
+                    id="categoryFilter"
+                    aria-label="Lọc danh mục">
+
+                    <option value="">Tất cả danh mục</option>
+                    <option value="nail">Nail</option>
+                    <option value="skincare">Chăm sóc da</option>
+                    <option value="hair">Tóc</option>
+                    <option value="massage">Massage</option>
+                    <option value="other">Khác</option>
+
+                </select>
+
+                <select
+                    id="statusFilter"
+                    aria-label="Lọc trạng thái">
+
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="active">Đang hoạt động</option>
+                    <option value="inactive">Ngừng hoạt động</option>
+
+                </select>
+
+                <button
+                    type="button"
+                    id="refreshButton"
+                    class="btn btn-outline">
+                    ↻ Làm mới
+                </button>
+
+            </section>
+
+            <!-- SERVICE FORM -->
+            <section
+                id="formCard"
+                class="service-panel service-form-card"
+                hidden>
+
+                <div class="service-panel-heading">
+
+                    <div>
+                        <h3 id="formTitle">Thêm dịch vụ</h3>
+                        <p>Nhập thông tin dịch vụ bên dưới.</p>
+                    </div>
+
+                    <button
+                        id="cancelButton"
+                        type="button"
+                        class="btn btn-outline">
+                        ✕ Đóng
+                    </button>
+
+                </div>
+
+                <form id="serviceForm">
+
+                    <input id="documentId" type="hidden">
+                    <input id="documentRev" type="hidden">
+
+                    <div class="service-form-grid">
+
+                        <label>
+                            Mã dịch vụ
+
+                            <input
+                                id="serviceId"
+                                type="text"
+                                maxlength="50"
+                                placeholder="Tự động tạo nếu để trống">
+
+                            <small>Ví dụ: SRV001</small>
+                        </label>
+
+                        <label>
+                            Tên dịch vụ *
+
+                            <input
+                                id="serviceName"
+                                type="text"
+                                required
+                                maxlength="150"
+                                placeholder="Ví dụ: Sơn gel cơ bản">
+                        </label>
+
+                        <label>
+                            Danh mục *
+
+                            <select id="category" required>
+                                <option value="nail">Nail</option>
+                                <option value="skincare">Chăm sóc da</option>
+                                <option value="hair">Tóc</option>
+                                <option value="massage">Massage</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Giá dịch vụ (VNĐ) *
+
+                            <input
+                                id="price"
+                                type="number"
+                                required
+                                min="0"
+                                step="1000"
+                                placeholder="150000">
+                        </label>
+
+                        <label>
+                            Thời lượng (phút) *
+
+                            <input
+                                id="duration"
+                                type="number"
+                                required
+                                min="1"
+                                step="1"
+                                placeholder="45">
+                        </label>
+
+                        <label>
+                            Trạng thái *
+
+                            <select id="status" required>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Ngừng hoạt động</option>
+                            </select>
+                        </label>
+
+                    </div>
+
+                    <div class="service-form-actions">
+
+                        <button
+                            id="saveButton"
+                            class="btn btn-primary"
+                            type="submit">
+                            ✓ Lưu dịch vụ
+                        </button>
+
+                        <button
+                            id="resetButton"
+                            class="btn btn-outline"
+                            type="reset">
+                            ↻ Nhập lại
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- TABLE -->
+            <section class="service-panel service-table-panel">
+
+                <div class="service-table-heading">
+                    <div>
+                        <h3>Danh sách dịch vụ</h3>
+                        <p>Thông tin các dịch vụ hiện có trong cửa hàng.</p>
+                    </div>
+                </div>
+
+                <div class="service-table-wrapper">
+
+                    <table class="service-table">
+
+                        <thead>
+                            <tr>
+                                <th>Mã dịch vụ</th>
+                                <th>Tên dịch vụ</th>
+                                <th>Danh mục</th>
+                                <th>Giá</th>
+                                <th>Thời lượng</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="serviceTableBody">
+                            <tr>
+                                <td colspan="7">
+                                    Đang tải dữ liệu...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                
+<div class="service-pagination">
+
+    <div class="pagination-info">
+        <span id="paginationStart">0</span>
+        -
+        <span id="paginationEnd">0</span>
+        trong tổng số
+        <strong id="paginationTotal">0</strong>
+        dịch vụ
+    </div>
+
+    <div class="pagination-controls">
+
+        <label class="page-size-label">
+            Hiển thị
+
+            <select id="pageSize">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+        </label>
+
+        <button
+            id="prevButton"
+            class="pagination-button"
+            type="button"
+            aria-label="Trang trước">
+            ‹
+        </button>
+
+        <div
+            id="paginationNumbers"
+            class="pagination-numbers">
+        </div>
+
+        <button
+            id="nextButton"
+            class="pagination-button"
+            type="button"
+            aria-label="Trang sau">
+            ›
+        </button>
+
+    </div>
+
+</div>
+
+
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            <p>
+                © <span id="currentYear"></span>
+                BeautyShop. All rights reserved.
+            </p>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- PROFILE DIALOG -->
+<div
+    class="profile-dialog-overlay"
+    id="profileDialog"
+    hidden>
+
+    <div class="profile-dialog">
+
+        <div class="profile-dialog-header">
+            <h3>Thông tin tài khoản</h3>
+
+            <button
+                type="button"
+                id="closeProfileDialog">
+                ×
+            </button>
+        </div>
+
+        <div class="profile-dialog-body">
+
+            <div class="profile-dialog-avatar">
+                <div class="profile-avatar" id="dialogAvatar">BS</div>
+
+                <div>
+                    <strong id="dialogUserName">Đang tải...</strong>
+                    <span id="dialogUserRole">...</span>
+                </div>
+            </div>
+
+            <div class="profile-detail">
+                <span>Tên đăng nhập</span>
+                <strong id="dialogUsername">-</strong>
+            </div>
+
+            <div class="profile-detail">
+                <span>Mã nhân viên</span>
+                <strong id="dialogEmployeeId">-</strong>
+            </div>
+
+            <div class="profile-detail">
+                <span>Mã chi nhánh</span>
+                <strong id="dialogBranchId">-</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

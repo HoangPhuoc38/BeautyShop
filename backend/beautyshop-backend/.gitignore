@@ -1,0 +1,93 @@
+HELP.md
+
+# ==============================
+# MAVEN / SPRING BOOT
+# ==============================
+
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ==============================
+# STS
+# ==============================
+
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ==============================
+# INTELLIJ IDEA
+# ==============================
+
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ==============================
+# NETBEANS
+# ==============================
+
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ==============================
+# VS CODE
+# ==============================
+
+.vscode/
+
+# ==============================
+# ENVIRONMENT / SECRETS
+# ==============================
+
+.env
+.env.*
+!.env.example
+
+application-local.properties
+application-secret.properties
+
+*.pem
+*.key
+
+# ==============================
+# LOGS
+# ==============================
+
+*.log
+
+# ==============================
+# DATABASE BACKUP
+# ==============================
+
+*.sqlite
+*.db
+*.dump
+*.backup
+
+# ==============================
+# NODE.JS
+# ==============================
+
+node_modules/
+
+# ==============================
+# WINDOWS / MACOS
+# ==============================
+
+.DS_Store
+Thumbs.db
+desktop.ini
