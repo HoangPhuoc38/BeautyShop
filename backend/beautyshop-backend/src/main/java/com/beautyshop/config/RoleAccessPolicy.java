@@ -101,6 +101,29 @@ public final class RoleAccessPolicy {
             return "manager".equals(role) && "GET".equals(method);
         }
 
+        if (path.startsWith("/api/data")) {
+            if (!"manager".equals(role)) {
+                return false;
+            }
+
+            if ("GET".equals(method) && "/api/data/overview".equals(path)) {
+                return true;
+            }
+
+            if ("GET".equals(method) && path.matches(
+                    "/api/data/export/(products|services|customers|employees|appointments|invoices|payments)")) {
+                return true;
+            }
+
+            if ("GET".equals(method) && path.matches(
+                    "/api/data/template/(products|services|customers|appointments)")) {
+                return true;
+            }
+
+            return "POST".equals(method) && path.matches(
+                    "/api/data/import/(products|services|customers|appointments)");
+        }
+
         return path.startsWith("/api/auth/")
                 && "POST".equals(method)
                 && "/api/auth/change-password".equals(path);

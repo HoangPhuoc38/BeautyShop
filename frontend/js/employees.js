@@ -752,155 +752,24 @@ async function restoreEmployees(file) {
     if (!file) return;
 
     try {
-        // Kiểm tra phần mở rộng
-        if (!file.name.toLowerCase().endsWith(".json")) {
-            throw new Error("Vui lòng chọn file JSON.");
+        const lowerName = file.name.toLowerCase();
+        if (!lowerName.endsWith(".json") && !lowerName.endsWith(".csv")) {
+            throw new Error("Vui lòng chọn file JSON hoặc CSV.");
         }
 
-        // Giới hạn kích thước file 10 MB
         if (file.size > 10 * 1024 * 1024) {
             throw new Error("File không được vượt quá 10 MB.");
         }
 
-        const content = await file.text();
-
-        const backupData = JSON.parse(content);
-
-        // Kiểm tra định dạng
-        if (
-            backupData.type !== "beautyshop_employee_backup" ||
-            backupData.version !== 1 ||
-            !Array.isArray(backupData.employees)
-        ) {
-            throw new Error(
-                "File không đúng định dạng sao lưu nhân viên BeautyShop."
-            );
-        }
-
-        if (backupData.employees.length === 0) {
-            throw new Error(
-                "File sao lưu không có nhân viên."
-            );
-        }
-
-        const requiredFields = [
-            "employee_id",
-            "full_name",
-            "username",
-            "email",
-            "role",
-            "status"
-        ];
-
-        const validRoles = [
-            "admin",
-            "manager",
-            "staff"
-        ];
-
-        const validStatuses = [
-            "active",
-            "inactive"
-        ];
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        const usernames = new Set();
-        const emails = new Set();
-        const employeeIds = new Set();
-
-        backupData.employees.forEach((employee, index) => {
-
-            if (
-                !employee ||
-                typeof employee !== "object" ||
-                Array.isArray(employee)
-            ) {
-                throw new Error(
-                    `Dữ liệu nhân viên thứ ${index + 1} không hợp lệ.`
-                );
+        await window.BeautyShopTransfer.runEntityImport(
+            "employees",
+            file,
+            async result => {
+                showMessage(result.message || "Khôi phục dữ liệu nhân viên thành công.");
+                await loadEmployees();
             }
-
-            for (const field of requiredFields) {
-                if (
-                    !String(employee[field] ?? "").trim()
-                ) {
-                    throw new Error(
-                        `Nhân viên thứ ${index + 1} thiếu ${field}.`
-                    );
-                }
-            }
-
-            if (!validRoles.includes(employee.role)) {
-                throw new Error(
-                    `Vai trò nhân viên thứ ${index + 1} không hợp lệ.`
-                );
-            }
-
-            if (!validStatuses.includes(employee.status)) {
-                throw new Error(
-                    `Trạng thái nhân viên thứ ${index + 1} không hợp lệ.`
-                );
-            }
-
-            if (!emailRegex.test(employee.email)) {
-                throw new Error(
-                    `Email nhân viên thứ ${index + 1} không hợp lệ.`
-                );
-            }
-
-            const username = employee.username
-                .trim()
-                .toLowerCase();
-
-            const email = employee.email
-                .trim()
-                .toLowerCase();
-
-            const employeeId = employee.employee_id
-                .trim()
-                .toLowerCase();
-
-            if (usernames.has(username)) {
-                throw new Error(
-                    `File có tên đăng nhập trùng: ${employee.username}.`
-                );
-            }
-
-            if (emails.has(email)) {
-                throw new Error(
-                    `File có email trùng: ${employee.email}.`
-                );
-            }
-
-            if (employeeIds.has(employeeId)) {
-                throw new Error(
-                    `File có mã nhân viên trùng: ${employee.employee_id}.`
-                );
-            }
-
-            usernames.add(username);
-            emails.add(email);
-            employeeIds.add(employeeId);
-        });
-
-        const confirmed = confirm(
-            "File sao lưu hợp lệ.\n\n" +
-            `Số nhân viên: ${backupData.employees.length}\n` +
-            `Ngày sao lưu: ${backupData.export_date || "Không xác định"}\n\n` +
-            "Bạn có muốn tiếp tục kiểm tra dữ liệu khôi phục không?"
         );
-
-        if (!confirmed) return;
-
-        // Chưa ghi vào CouchDB.
-        // Cần API import ở backend để xử lý an toàn.
-        showMessage(
-            "File hợp lệ. Backend chưa có API khôi phục dữ liệu."
-        );
-
     } catch (error) {
-
         showMessage(
             "Không thể khôi phục: " + error.message,
             true

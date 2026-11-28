@@ -66,4 +66,25 @@ class RoleAccessPolicyTest {
         assertFalse(policy.isAllowed(
                 "manager", "DELETE", "/api/employees/employee:1", null));
     }
+
+    @Test
+    void dataBackupAndImportPermissionsEnforceRoleBoundaries() {
+        assertTrue(policy.isAllowed("admin", "GET", "/api/data/backup", null));
+        assertTrue(policy.isAllowed("admin", "POST", "/api/data/restore", null));
+        assertTrue(policy.isAllowed("admin", "POST", "/api/data/import/employees", null));
+
+        assertFalse(policy.isAllowed("manager", "GET", "/api/data/backup", null));
+        assertFalse(policy.isAllowed("manager", "POST", "/api/data/restore", null));
+        assertFalse(policy.isAllowed("manager", "GET", "/api/data/backups", null));
+        assertFalse(policy.isAllowed("manager", "POST", "/api/data/import/employees", null));
+        assertTrue(policy.isAllowed("manager", "GET", "/api/data/overview", null));
+        assertTrue(policy.isAllowed("manager", "GET", "/api/data/export/products", null));
+        assertTrue(policy.isAllowed("manager", "GET", "/api/data/export/invoices", null));
+        assertTrue(policy.isAllowed("manager", "POST", "/api/data/import/products", null));
+        assertTrue(policy.isAllowed("manager", "POST", "/api/data/import/customers", null));
+
+        assertFalse(policy.isAllowed("staff", "GET", "/api/data/overview", null));
+        assertFalse(policy.isAllowed("staff", "GET", "/api/data/export/products", null));
+        assertFalse(policy.isAllowed("staff", "POST", "/api/data/import/products", null));
+    }
 }

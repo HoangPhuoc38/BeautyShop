@@ -54,6 +54,11 @@
             <a href="payments.html" class="nav-item">
                 <span class="nav-icon">₫</span><span>Thanh toán</span>
             </a>
+
+            <div class="sidebar-label" data-system-label hidden>HỆ THỐNG</div>
+            <a href="data-management.html" class="nav-item" hidden>
+                <span class="nav-icon">⇅</span><span>Sao lưu & Dữ liệu</span>
+            </a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -155,6 +160,12 @@
 
                         <button type="button" class="secondary-button"
                             id="backupProductsButton" hidden>⇩ Sao lưu dữ liệu</button>
+
+                        <button type="button" class="secondary-button"
+                            data-export-csv="products" data-manager-action hidden>⇩ Xuất CSV</button>
+
+                        <button type="button" class="secondary-button"
+                            data-import-entity="products" data-manager-action hidden>↥ Nhập / Khôi phục</button>
 
                         <button type="button" class="primary-button"
                             id="newProductButton" hidden>+ Thêm sản phẩm</button>
@@ -448,6 +459,7 @@
 
 <script src="js/app.js"></script>
 <script src="js/profile.js"></script>
+<script src="js/entity-transfer.js"></script>
 <script src="js/products.js"></script>
 </body>
 </html>

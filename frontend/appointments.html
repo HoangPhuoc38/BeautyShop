@@ -77,6 +77,12 @@
             <span>Thanh toán</span>
         </a>
 
+        <div class="sidebar-label" data-system-label hidden>HỆ THỐNG</div>
+        <a href="data-management.html" class="nav-item" hidden>
+            <span class="nav-icon">⇅</span>
+            <span>Sao lưu & Dữ liệu</span>
+        </a>
+
     </nav>
 
     <div class="sidebar-bottom">
@@ -272,6 +278,26 @@
             <span>⇩</span>
             Sao lưu dữ liệu
 
+        </button>
+
+        <button
+            type="button"
+            class="btn btn-refresh"
+            data-export-csv="appointments"
+            data-manager-action
+            hidden>
+            <span>⇩</span>
+            Xuất CSV
+        </button>
+
+        <button
+            type="button"
+            class="btn btn-refresh"
+            data-import-entity="appointments"
+            data-manager-action
+            hidden>
+            <span>↥</span>
+            Nhập / Khôi phục
         </button>
 
         <!-- NÚT THÊM LỊCH HẸN -->
@@ -772,6 +798,7 @@
 
 <script src="js/app.js"></script>
 <script src="js/profile.js"></script>
+<script src="js/entity-transfer.js"></script>
 <script src="js/appointments.js"></script>
 
 </body>

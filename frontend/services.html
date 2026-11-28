@@ -15,6 +15,7 @@
 
     <script src="js/app.js" defer></script>
     <script src="js/profile.js" defer></script>
+    <script src="js/entity-transfer.js" defer></script>
     <script src="js/services.js" defer></script>
 </head>
 
@@ -78,6 +79,12 @@
             <a href="payments.html" class="nav-item">
                 <span class="nav-icon">₫</span>
                 <span>Thanh toán</span>
+            </a>
+
+            <div class="sidebar-label" data-system-label hidden>HỆ THỐNG</div>
+            <a href="data-management.html" class="nav-item" hidden>
+                <span class="nav-icon">⇅</span>
+                <span>Sao lưu & Dữ liệu</span>
             </a>
 
         </nav>
@@ -242,6 +249,26 @@
                         hidden>
                         <span>⇩</span>
                         Sao lưu dữ liệu
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-refresh"
+                        data-export-csv="services"
+                        data-manager-action
+                        hidden>
+                        <span>⇩</span>
+                        Xuất CSV
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-refresh"
+                        data-import-entity="services"
+                        data-manager-action
+                        hidden>
+                        <span>↥</span>
+                        Nhập / Khôi phục
                     </button>
 
                     <button

@@ -150,4 +150,37 @@ public class CouchDbClient {
     public boolean documentExists(String id) {
         return getDocument(id) != null;
     }
+
+    // =========================================
+    // GHI / XÓA HÀNG LOẠT (_bulk_docs)
+    // =========================================
+
+    @SuppressWarnings("unchecked")
+    public List<Map<String, Object>> bulkDocuments(
+            List<Map<String, Object>> documents) {
+
+        if (documents == null || documents.isEmpty()) {
+            return List.of();
+        }
+
+        List<Map<String, Object>> results = new ArrayList<>();
+        int batchSize = 500;
+
+        for (int start = 0; start < documents.size(); start += batchSize) {
+            int end = Math.min(start + batchSize, documents.size());
+            List<Map<String, Object>> batch = documents.subList(start, end);
+
+            List<Map<String, Object>> response = client.post()
+                    .uri("/{db}/_bulk_docs", database)
+                    .body(Map.of("docs", batch))
+                    .retrieve()
+                    .body(List.class);
+
+            if (response != null) {
+                results.addAll(response);
+            }
+        }
+
+        return results;
+    }
 }

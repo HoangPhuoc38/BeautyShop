@@ -35,6 +35,10 @@ button {
     cursor: pointer;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 .app-container {
     min-height: 100vh;
 }

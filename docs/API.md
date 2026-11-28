@@ -103,6 +103,22 @@ Các endpoint dưới đây được tổng hợp từ Controller trong Backend.
 | POST | `/recalculate` | Tính toán lại dữ liệu loyalty |
 | GET | `/statistics` | Thống kê loyalty |
 
+## Data Backup, Restore & Import/Export `/api/data`
+
+| Method | Endpoint | Quyền | Mục đích |
+|---|---|---|---|
+| GET | `/overview` | Admin, Manager | Thống kê số lượng document theo phân hệ |
+| GET | `/backup?includeUsers=false&saveToServer=false` | Admin | Tải xuống file Full Backup JSON |
+| POST | `/backups?includeUsers=false` | Admin | Tạo snapshot Full Backup vào `database/backups/` |
+| GET | `/backups` | Admin | Danh sách snapshot trên máy chủ |
+| GET | `/backups/{filename}` | Admin | Tải xuống snapshot từ máy chủ |
+| DELETE | `/backups/{filename}` | Admin | Xóa snapshot trên máy chủ |
+| POST | `/restore?mode=merge\|replace` | Admin | Khôi phục từ file Full Backup JSON |
+| POST | `/backups/{filename}/restore?mode=merge\|replace` | Admin | Khôi phục từ snapshot trên máy chủ |
+| GET | `/export/{entity}?format=csv\|json` | Admin, Manager | Xuất dữ liệu phân hệ (`products`, `services`, `customers`, `employees`, `appointments`, `invoices`, `payments`) |
+| GET | `/template/{entity}?format=csv\|json` | Admin, Manager | Tải file mẫu CSV/JSON để nhập dữ liệu |
+| POST | `/import/{entity}?mode=upsert\|skip_existing\|update_only&dryRun=true\|false` | Admin, Manager (trừ `employees` chỉ Admin) | Nhập/khôi phục dữ liệu phân hệ từ CSV hoặc JSON |
+
 ## Fetch example
 
 ```javascript

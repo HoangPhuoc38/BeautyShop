@@ -31,6 +31,7 @@ public class CorsConfig {
                                 "PATCH"
                         )
                         .allowedHeaders("*")
+                        .exposedHeaders("Content-Disposition")
                         .allowCredentials(true)
                         .maxAge(3600);
             }

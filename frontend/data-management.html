@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sao lưu & Dữ liệu | BeautyShop</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/data-management.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-icon">✿</div>
+                <div class="brand-info">
+                    <h2>BeautyShop</h2>
+                    <span>Beauty Management</span>
+                </div>
+            </div>
+
+            <div class="sidebar-label">TỔNG QUAN</div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">▦</span><span>Dashboard</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <span class="nav-icon">♡</span><span>Sản phẩm</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="nav-icon">♙</span><span>Khách hàng</span>
+                </a>
+                <a href="employees.html" class="nav-item">
+                    <span class="nav-icon">♧</span><span>Nhân viên</span>
+                </a>
+
+                <div class="sidebar-label">VẬN HÀNH</div>
+                <a href="services.html" class="nav-item">
+                    <span class="nav-icon">✧</span><span>Dịch vụ làm đẹp</span>
+                </a>
+                <a href="appointments.html" class="nav-item">
+                    <span class="nav-icon">▣</span><span>Lịch hẹn</span>
+                </a>
+                <a href="orders.html" class="nav-item">
+                    <span class="nav-icon">▤</span><span>Đơn hàng</span>
+                </a>
+                <a href="payments.html" class="nav-item">
+                    <span class="nav-icon">₫</span><span>Thanh toán</span>
+                </a>
+
+                <div class="sidebar-label">HỆ THỐNG</div>
+                <a href="data-management.html" class="nav-item active">
+                    <span class="nav-icon">⇅</span><span>Sao lưu & Dữ liệu</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="help-card">
+                    <div class="help-icon">✿</div>
+                    <h4>BeautyShop Support</h4>
+                    <p>Sao lưu định kỳ giúp bảo vệ toàn bộ dữ liệu cửa hàng.</p>
+                </div>
+
+                <button class="logout-button" id="logoutButton" type="button">
+                    ↪ Đăng xuất
+                </button>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Mở menu">☰</button>
+                    <div>
+                        <h1>Sao lưu & Dữ liệu</h1>
+                        <p>Backup, Restore toàn hệ thống và Import / Export dữ liệu CSV, JSON.</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="profile-container">
+                        <button type="button" class="profile-trigger" id="profileTrigger" aria-expanded="false"
+                            aria-controls="profileDropdown">
+                            <div class="profile-avatar" id="profileAvatar">BS</div>
+                            <div class="profile-info">
+                                <strong id="currentUserName">Đang tải...</strong>
+                                <span id="currentUserRole">...</span>
+                            </div>
+                            <span class="profile-chevron">⌄</span>
+                        </button>
+
+                        <div class="profile-dropdown" id="profileDropdown" hidden>
+                            <div class="profile-dropdown-heading">
+                                <div class="profile-avatar" id="dropdownAvatar">BS</div>
+                                <div>
+                                    <strong id="dropdownUserName">Đang tải...</strong>
+                                    <span id="dropdownUserRole">...</span>
+                                </div>
+                            </div>
+                            <div class="profile-dropdown-divider"></div>
+                            <button type="button" class="profile-menu-item" id="viewProfileButton">
+                                <span class="profile-menu-icon">♙</span>
+                                Thông tin tài khoản
+                            </button>
+                            <button type="button" class="profile-menu-item" id="changeAvatarButton">
+                                <span class="profile-menu-icon">📷</span>
+                                Thay đổi ảnh đại diện
+                            </button>
+                            <div class="profile-dropdown-divider"></div>
+                            <button type="button" class="profile-menu-item danger" id="profileLogoutButton">
+                                <span class="profile-menu-icon">↪</span>
+                                Đăng xuất
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-content data-page">
+
+                <div id="dataBanner" class="data-banner" role="status" aria-live="polite" hidden></div>
+
+                <!-- TỔNG QUAN DỮ LIỆU -->
+                <section class="section-block">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Tổng quan cơ sở dữ liệu</h2>
+                            <p id="databaseSubtitle">Đang tải thống kê dữ liệu từ CouchDB...</p>
+                        </div>
+                        <button type="button" class="dm-btn dm-btn-secondary" id="refreshOverviewButton">
+                            ↻ Làm mới
+                        </button>
+                    </div>
+
+                    <div class="dm-overview-grid" id="overviewGrid">
+                        <div class="dm-stat-card"><span>Sản phẩm</span><strong id="statProducts">0</strong></div>
+                        <div class="dm-stat-card"><span>Dịch vụ</span><strong id="statServices">0</strong></div>
+                        <div class="dm-stat-card"><span>Khách hàng</span><strong id="statCustomers">0</strong></div>
+                        <div class="dm-stat-card"><span>Nhân viên</span><strong id="statEmployees">0</strong></div>
+                        <div class="dm-stat-card"><span>Lịch hẹn</span><strong id="statAppointments">0</strong></div>
+                        <div class="dm-stat-card"><span>Hóa đơn</span><strong id="statInvoices">0</strong></div>
+                        <div class="dm-stat-card"><span>Thanh toán</span><strong id="statPayments">0</strong></div>
+                        <div class="dm-stat-card" id="statUsersCard" hidden><span>Tài khoản</span><strong
+                                id="statUsers">0</strong></div>
+                    </div>
+                </section>
+
+                <!-- THÔNG BÁO QUYỀN MANAGER -->
+                <section class="section-block" id="managerBackupNotice" hidden>
+                    <div class="data-banner info">
+                        Tài khoản hiện tại có quyền <strong>Quản lý (Manager)</strong>. Chức năng <strong>Sao lưu &amp;
+                            Khôi phục toàn hệ thống (Full Backup &amp; Restore)</strong> chỉ dành cho <strong>Quản trị
+                            viên (Admin)</strong>. Bạn vẫn có thể <strong>Sao lưu / Export</strong> và <strong>Khôi phục
+                            / Import</strong> dữ liệu từng phân hệ (Sản phẩm, Dịch vụ, Khách hàng, Lịch hẹn) ở phần bên
+                        dưới.
+                    </div>
+                </section>
+
+                <!-- FULL BACKUP & RESTORE (ADMIN ONLY) -->
+                <section class="section-block" id="adminBackupSection" hidden>
+                    <div class="section-heading">
+                        <div>
+                            <h2>Sao lưu & Khôi phục toàn hệ thống (Admin)</h2>
+                            <p>Tạo bản sao lưu toàn bộ CouchDB hoặc khôi phục lại trạng thái trước đó.</p>
+                        </div>
+                    </div>
+
+                    <div class="dm-two-col">
+                        <!-- BACKUP CARD -->
+                        <article class="content-card dm-card">
+                            <div class="dm-card-head">
+                                <span class="dm-badge dm-badge-green">BACKUP</span>
+                                <h3>Tạo bản sao lưu toàn bộ</h3>
+                                <p>Xuất toàn bộ dữ liệu sản phẩm, dịch vụ, khách hàng, nhân viên, lịch hẹn, hóa đơn và
+                                    thanh toán.</p>
+                            </div>
+
+                            <label class="dm-checkbox">
+                                <input type="checkbox" id="backupIncludeUsers">
+                                <span>Bao gồm tài khoản đăng nhập (<code>user</code> &amp; password hash) để phục hồi
+                                    hoàn toàn</span>
+                            </label>
+
+                            <div class="dm-actions-row">
+                                <button type="button" class="dm-btn dm-btn-primary" id="downloadFullBackupBtn">
+                                    ⇩ Tải file Backup (.json)
+                                </button>
+                                <button type="button" class="dm-btn dm-btn-success" id="saveServerSnapshotBtn">
+                                    ☁ Lưu Snapshot trên máy chủ
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- RESTORE CARD -->
+                        <article class="content-card dm-card">
+                            <div class="dm-card-head">
+                                <span class="dm-badge dm-badge-purple">RESTORE</span>
+                                <h3>Khôi phục từ file Backup (.json)</h3>
+                                <p>Tải lên file <code>beautyshop-backup-*.json</code> để khôi phục dữ liệu vào CouchDB.
+                                </p>
+                            </div>
+
+                            <div class="dm-dropzone" id="restoreDropzone">
+                                <input type="file" id="restoreFileInput" accept=".json,application/json" hidden>
+                                <div class="dm-dropzone-icon">↥</div>
+                                <p id="restoreFileName">Chọn hoặc kéo thả file Full Backup (.json) vào đây</p>
+                                <button type="button" class="dm-btn dm-btn-secondary" id="chooseRestoreFileBtn">
+                                    Chọn file JSON
+                                </button>
+                            </div>
+
+                            <div class="dm-radio-group">
+                                <label class="dm-radio">
+                                    <input type="radio" name="restoreMode" value="merge" checked>
+                                    <span><strong>Gộp dữ liệu (Merge)</strong> — Thêm mới &amp; cập nhật theo bản
+                                        backup, giữ dữ liệu hiện có khác.</span>
+                                </label>
+                                <label class="dm-radio">
+                                    <input type="radio" name="restoreMode" value="replace">
+                                    <span><strong>Thay thế toàn bộ (Replace)</strong> — Tự động lưu bản dự phòng an toàn
+                                        trước, sau đó đồng bộ đúng theo backup.</span>
+                                </label>
+                            </div>
+
+                            <div class="dm-actions-row">
+                                <button type="button" class="dm-btn dm-btn-danger" id="executeRestoreBtn" disabled>
+                                    ↥ Khôi phục dữ liệu
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- SERVER SNAPSHOTS -->
+                    <article class="content-card dm-card dm-snapshots-card">
+                        <div class="dm-snapshot-header">
+                            <div>
+                                <h3>Danh sách Snapshot trên máy chủ (<code>database/backups/</code>)</h3>
+                                <p>Các bản sao lưu được lưu cục bộ trên máy chủ, có thể tải xuống hoặc khôi phục nhanh.
+                                </p>
+                            </div>
+                            <button type="button" class="dm-btn dm-btn-secondary" id="refreshSnapshotsBtn">
+                                ↻ Tải lại danh sách
+                            </button>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="dm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tên file</th>
+                                        <th>Thời gian sao lưu</th>
+                                        <th>Số document</th>
+                                        <th>Bao gồm User</th>
+                                        <th>Dung lượng</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="snapshotsTableBody">
+                                    <tr>
+                                        <td colspan="6" class="dm-empty">Đang tải danh sách snapshot...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- IMPORT / EXPORT THEO PHÂN HỆ -->
+                <section class="section-block">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Import / Export &amp; Khôi phục theo phân hệ</h2>
+                            <p>Xuất báo cáo CSV (Excel tiếng Việt) hoặc JSON, và nhập / khôi phục dữ liệu từng bảng từ
+                                file CSV hoặc JSON backup.</p>
+                        </div>
+                    </div>
+
+                    <div class="dm-two-col">
+                        <!-- EXPORT -->
+                        <article class="content-card dm-card">
+                            <div class="dm-card-head">
+                                <span class="dm-badge dm-badge-pink">EXPORT</span>
+                                <h3>Xuất dữ liệu (Export)</h3>
+                                <p>Chọn phân hệ và định dạng file muốn tải xuống.</p>
+                            </div>
+
+                            <div class="dm-form-grid">
+                                <label>
+                                    Phân hệ dữ liệu
+                                    <select id="exportEntitySelect">
+                                        <option value="products">Sản phẩm (Products)</option>
+                                        <option value="services">Dịch vụ làm đẹp (Services)</option>
+                                        <option value="customers">Khách hàng (Customers)</option>
+                                        <option value="employees">Nhân viên (Employees)</option>
+                                        <option value="appointments">Lịch hẹn (Appointments)</option>
+                                        <option value="invoices">Hóa đơn (Invoices)</option>
+                                        <option value="payments">Thanh toán (Payments)</option>
+                                    </select>
+                                </label>
+
+                                <label>
+                                    Định dạng file
+                                    <select id="exportFormatSelect">
+                                        <option value="csv">CSV (Excel UTF-8 BOM)</option>
+                                        <option value="json">JSON (BeautyShop Standard)</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="dm-actions-row">
+                                <button type="button" class="dm-btn dm-btn-primary" id="exportEntityBtn">
+                                    ⇩ Xuất dữ liệu
+                                </button>
+                                <button type="button" class="dm-btn dm-btn-secondary" id="downloadTemplateBtn">
+                                    📄 Tải file mẫu (Template)
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- IMPORT -->
+                        <article class="content-card dm-card">
+                            <div class="dm-card-head">
+                                <span class="dm-badge dm-badge-blue">IMPORT / RESTORE</span>
+                                <h3>Nhập / Khôi phục dữ liệu theo phân hệ</h3>
+                                <p>Hỗ trợ file CSV (theo template) hoặc file JSON (chuẩn export / file sao lưu từ các
+                                    trang Sản phẩm, Khách hàng, Dịch vụ, Nhân viên, Lịch hẹn).</p>
+                            </div>
+
+                            <div class="dm-form-grid">
+                                <label>
+                                    Phân hệ nhập vào
+                                    <select id="importEntitySelect">
+                                        <option value="products">Sản phẩm (Products)</option>
+                                        <option value="services">Dịch vụ làm đẹp (Services)</option>
+                                        <option value="customers">Khách hàng (Customers)</option>
+                                        <option value="employees" id="importEmployeeOption">Nhân viên (Employees -
+                                            Admin)</option>
+                                        <option value="appointments">Lịch hẹn (Appointments)</option>
+                                    </select>
+                                </label>
+
+                                <label>
+                                    Chế độ xử lý trùng mã
+                                    <select id="importModeSelect">
+                                        <option value="upsert">Thêm mới &amp; Cập nhật (Upsert)</option>
+                                        <option value="skip_existing">Chỉ thêm mới (Bỏ qua bản ghi đã có)</option>
+                                        <option value="update_only">Chỉ cập nhật bản ghi đã có</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="dm-dropzone" id="importDropzone">
+                                <input type="file" id="importFileInput" accept=".csv,.json,text/csv,application/json"
+                                    hidden>
+                                <div class="dm-dropzone-icon">⇧</div>
+                                <p id="importFileName">Chọn hoặc kéo thả file CSV hoặc JSON vào đây</p>
+                                <button type="button" class="dm-btn dm-btn-secondary" id="chooseImportFileBtn">
+                                    Chọn file CSV / JSON
+                                </button>
+                            </div>
+
+                            <div class="dm-actions-row">
+                                <button type="button" class="dm-btn dm-btn-secondary" id="dryRunImportBtn" disabled>
+                                    🔍 Kiểm tra trước (Dry-run)
+                                </button>
+                                <button type="button" class="dm-btn dm-btn-primary" id="commitImportBtn" disabled>
+                                    ✓ Xác nhận Import / Khôi phục
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- IMPORT PREVIEW / RESULT -->
+                    <article class="content-card dm-card dm-preview-card" id="importPreviewCard" hidden>
+                        <div class="dm-snapshot-header">
+                            <div>
+                                <h3 id="importPreviewTitle">Kết quả kiểm tra dữ liệu</h3>
+                                <p id="importPreviewSubtitle"></p>
+                            </div>
+                        </div>
+
+                        <div class="dm-summary-pills" id="importSummaryPills"></div>
+                        <div id="importErrorsBox" class="dm-errors-box" hidden></div>
+
+                        <div class="table-container" id="importPreviewTableWrap" hidden>
+                            <table class="dm-table">
+                                <thead id="importPreviewHead"></thead>
+                                <tbody id="importPreviewBody"></tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+                <footer class="footer">
+                    <p>© <span id="currentYear"></span> BeautyShop.</p>
+                    <p>Chăm sóc sắc đẹp, nâng tầm trải nghiệm.</p>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <input type="file" id="profileAvatarInput" accept="image/png,image/jpeg,image/webp" hidden>
+
+    <dialog id="profileDialog" class="profile-dialog">
+        <div class="profile-dialog-content">
+            <div class="profile-dialog-header">
+                <h2>Thông tin tài khoản</h2>
+                <button type="button" class="profile-dialog-close" id="closeProfileDialog">×</button>
+            </div>
+            <div class="profile-dialog-user">
+                <div class="profile-avatar" id="dialogAvatar">BS</div>
+                <strong id="dialogUserName">Đang tải...</strong>
+                <span id="dialogUserRole">...</span>
+            </div>
+            <div class="profile-detail"><span>Tên đăng nhập</span><strong id="dialogUsername">...</strong></div>
+            <div class="profile-detail"><span>Mã nhân viên</span><strong id="dialogEmployeeId">...</strong></div>
+            <div class="profile-detail"><span>Chi nhánh</span><strong id="dialogBranchId">...</strong></div>
+        </div>
+    </dialog>
+
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/data-management.js"></script>
+</body>
+
+</html>

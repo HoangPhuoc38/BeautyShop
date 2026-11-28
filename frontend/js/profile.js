@@ -181,10 +181,28 @@ async function loadProfile() {
         profileUser = data.user;
 
         updateProfileUI(profileUser);
+        updateSystemNavVisibility(profileUser.role);
 
     } catch (error) {
         console.error("Lỗi hồ sơ:", error);
     }
+}
+
+function updateSystemNavVisibility(role) {
+    const normalized = String(role || "")
+        .replace(/^ROLE_/i, "")
+        .toLowerCase();
+    const allowed = normalized === "admin" || normalized === "manager";
+
+    document.querySelectorAll('a[href="data-management.html"]').forEach(link => {
+        link.hidden = !allowed;
+    });
+    document.querySelectorAll(".sidebar-label[data-system-label]").forEach(label => {
+        label.hidden = !allowed;
+    });
+    document.querySelectorAll("[data-manager-action]").forEach(element => {
+        element.hidden = !allowed;
+    });
 }
 
 // ============================================
